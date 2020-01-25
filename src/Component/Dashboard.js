@@ -10,6 +10,7 @@ import { Chip, } from 'react-native-paper';
 import AppBarSelectedNotes from './AppBarSelectedNotes';
 import PushNotification from "react-native-push-notification";
 import Bottombar1 from './BottomBar1';
+import { styles } from '../StyleSheet/Dashboard'
 import { StyleSheet, Image, FlatList, Text, ScrollView, TouchableOpacity, } from 'react-native';
 import { getNotes, setPin, setArchive, setTrash, PermanentDelete} from '../Services/FireBaseDb';
 //import { getNotes, setPin, setArchive, setTrash, } from '../Services/AxiosDb';
@@ -203,7 +204,6 @@ async requestPermission() {
         dataSource: snapshotValue,
         listView: true,
       }, () => {
-        console.log('filter', this.state.dataSource );
         
         var pinData = []
         var unPinData = []
@@ -244,11 +244,11 @@ async requestPermission() {
         {
           this.state.selectionMode ?
             <AppBarSelectedNotes
-              handleSelectionMode={this.handleSelectionMode}
-              handlePinStatus={this.handlePinStatus}
-              handleArchive={this.handleArchive}
-              handlePermantDelete={this.handlePermantDelete}
-              handleTrash={this.handleTrash}
+              handleSelectionMode  = {this.handleSelectionMode}
+              handlePinStatus =  {this.handlePinStatus}
+              handleArchive = {this.handleArchive}
+              handlePermantDelete = {this.handlePermantDelete}
+              handleTrash = {this.handleTrash}
             />
             : <AppBar1 navigation={this.props.navigation} handleListView={this.handleListView} />
 
@@ -317,9 +317,7 @@ async requestPermission() {
                         dateTime = this.state.unPinData[item].Date+" "+this.state.unPinData[item].Time,
                         note = this.state.unPinData[item].Note,
                         title = this.state.unPinData[item].Title,
-                      
-                        this.showNotification(dateTime,note,title),
-                        
+                        //this.showNotification(dateTime,note,title),
                         this.state.unPinData[item].Date !== undefined && this.state.unPinData[item].Time !== undefined ?
                           <Chip icon={require('../Image/add_Alarm.png')} style={{ bottom: 15, width: 180, marginLeft: 6 }}>{this.state.unPinData[item].Date}{'  '}{this.state.unPinData[item].Time}</Chip>
                           : null
@@ -332,86 +330,10 @@ async requestPermission() {
             {/* </View> */}
           </ScrollView>
         </View >
-        <Bottombar1 handleNavigation = {this.handleNavigation}/>
 
-        {/* <View style ={{flexDirection :'row',height:'8%',}}> 
-        <Appbar style={styles.bottom}>
-          <View style={{flexDirection:'row',}}>
-            <Appbar.Action icon= {require('../Image/tick.png')} onPress={() => this.props.navigation.navigate('Reminder')} />
-            <Appbar.Action icon= {require('../Image/brush.png')} onPress={() => console.log(JSON.stringify(this.state.dataSource))} />
-            <Appbar.Action icon=  {require('../Image/miceicon.png')}onPress={() => console.log('Pressed label')} />
-            <Appbar.Action icon=  {require('../Image/imageicon.png')} onPress={() => console.log('Pressed delete')} /> 
-            
-            </View>
-            <View style={{ fles:1,backgroundColor:'white'}}>
-              <TouchableOpacity  style={{justifyContent:'flex-end',alignItems:'flex-end'}}
-              onPress={() => this.props.navigation.navigate('CreateNote')}>
-                <Image style={{height:"150%",bottom:25,}} resizeMode="contain" source={require('../Image/addd.png')} />
-              </TouchableOpacity>
-            </View>
-            </Appbar>
-            </View> */}
+        <Bottombar1 handleNavigation = {this.handleNavigation}/>
            
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  innerView: {
-    display: 'flex',
-    width: '100%',
-    height: '90%',
-  },
-  subView: {
-    width: '100%',
-    position: "relative",
-    borderColor: 'pink',
-    borderWidth: 1,
-    backgroundColor: 'white',
-    display: 'flex',
-  },
-  horizontalView: {
-    borderColor: 'pink',
-    borderWidth: 1,
-    backgroundColor: 'red',
-    display: 'flex',
-  },
-  subText: {
-    marginLeft: 20
-  },
-  alaramView: {
-    backgroundColor: 'lightblue',
-    marginLeft: 7,
-    bottom: 15,
-    borderWidth: 1,
-    width: 180,
-    borderRadius: 10,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-  },
-  bottom: {
-    backgroundColor: 'white',
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
-    borderWidth: .1,
-    width:'100%',
-    justifyContent:'space-between'
-  },
-  flatview: {
-    justifyContent: 'center',
-    paddingTop: 30,
-    borderRadius: 2,
-  },
-
-  container: {
-    flex: 1,
-    backgroundColor: "white",
-  },
-  ListStyle: {
-    flex: 1,
-    marginVertical: 20,
-  },
-});
