@@ -18,6 +18,8 @@ export default class DialogReminderr extends Component {
   }
 
   render() {
+    console.log('in 11212121');
+    
     return (
 
       <Dialog.Container visible={this.props.dialogVisible}>

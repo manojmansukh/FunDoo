@@ -1,17 +1,18 @@
 import * as React from 'react';
-import firebase from '../fireBase/Config'
-import axios from'axios'
+import firebase from '../fireBase/Config';
+import axios from'axios';
 import moment from 'moment';
 import { Appbar } from 'react-native-paper';
 import { View } from 'native-base';
 import { AsyncStorage } from "react-native";
-import AppBar1 from './AppBar1'
+import AppBar1 from './AppBar1';
 import { Chip, } from 'react-native-paper';
-import AppBarSelectedNotes from './AppBarSelectedNotes'
-import PushNotification from "react-native-push-notification"
+import AppBarSelectedNotes from './AppBarSelectedNotes';
+import PushNotification from "react-native-push-notification";
+import Bottombar1 from './BottomBar1';
 import { StyleSheet, Image, FlatList, Text, ScrollView, TouchableOpacity, } from 'react-native';
 import { getNotes, setPin, setArchive, setTrash, PermanentDelete} from '../Services/FireBaseDb';
-//import { getNotes, setPin, setArchive, setTrash, } from '../Services/AxiosDb'
+//import { getNotes, setPin, setArchive, setTrash, } from '../Services/AxiosDb';
 var dateTime,note,title,systemTime;
 
 export default class Notes extends React.Component {
@@ -35,12 +36,11 @@ export default class Notes extends React.Component {
       nameList:'',
       users: []
     };
-
   }
 
-showNotification = (dateTime,note,title) =>{
+showNotification = (dateTime, note, title) => {
   console.log('Datenotification',dateTime)
-  console.log('Note',note);
+  console.log('Note', note);
   console.log('Title',title);
   console.log('currentTime',this.state.currentTime)
   console.log('dateTime',dateTime)
@@ -63,6 +63,12 @@ showNotification = (dateTime,note,title) =>{
     this.setState({ selectionMode: mode })
     this.setState({ selectedData: [] })
   }
+
+  handleNavigation = () =>{
+    console.log('hiiiii');
+    
+    this.props.navigation.navigate('CreateNote') 
+   }
 
   //selected node operation.
 
@@ -174,7 +180,7 @@ async requestPermission() {
 
   async componentDidMount() {
     // this.checkPermission();
-    // this.createNotificationListeners();
+     //this.createNotificationListeners();
     const nameList = ''
 
    //getNotes1();
@@ -224,13 +230,13 @@ async requestPermission() {
     })
   }
 
+  
   // componentWillUnmount() {
   //   this.notificationListener();
   //   this.notificationOpenedListener();
   // }
 
   render() {
-   // console.log("MAnojREnder<<<<<<<<<<<<<<<<<<",this.state.nameList);
     
     return (
       <View style={{ flex: 1, width: '100%', height: "100%" }}>
@@ -274,14 +280,12 @@ async requestPermission() {
                           dateTime = this.state.pinData[item].Date+" "+this.state.pinData[item].Time,
                           note = this.state.pinData[item].Note,
                           title = this.state.pinData[item].Title,
-                          // console.log('<<<<<<<<<<renderv<>>>>',dateTime),
-                          // console.log(this.state.pinData[item].Date),
-
+                       
                           //local notification method
                           this.showNotification(dateTime,note,title),
 
                             this.state.pinData[item].Date !== undefined && this.state.pinData[item].Time !== undefined ?
-                            <Chip icon={require('../Image/add_Alarm.png')} style={{ bottom: 17, width: 180, marginLeft: 6 }}>{this.state.pinData[item].Date}{'  '}{this.state.pinData[item].Time}</Chip>
+                            <Chip icon={require('../Image/add_Alarm.png')} style={{ bottom: 17, width: 180, marginLeft: 6,  }}>{this.state.pinData[item].Date}{'  '}{this.state.pinData[item].Time}</Chip>
                             : null
                         }
                       </View>
@@ -328,8 +332,9 @@ async requestPermission() {
             {/* </View> */}
           </ScrollView>
         </View >
+        <Bottombar1 handleNavigation = {this.handleNavigation}/>
 
-        <View style ={{flexDirection :'row',height:'8%',}}> 
+        {/* <View style ={{flexDirection :'row',height:'8%',}}> 
         <Appbar style={styles.bottom}>
           <View style={{flexDirection:'row',}}>
             <Appbar.Action icon= {require('../Image/tick.png')} onPress={() => this.props.navigation.navigate('Reminder')} />
@@ -341,11 +346,11 @@ async requestPermission() {
             <View style={{ fles:1,backgroundColor:'white'}}>
               <TouchableOpacity  style={{justifyContent:'flex-end',alignItems:'flex-end'}}
               onPress={() => this.props.navigation.navigate('CreateNote')}>
-                <Image style={{height:"150%",bottom:25}} resizeMode="contain" source={require('../Image/addd.png')} />
+                <Image style={{height:"150%",bottom:25,}} resizeMode="contain" source={require('../Image/addd.png')} />
               </TouchableOpacity>
             </View>
             </Appbar>
-            </View>
+            </View> */}
            
       </View>
     );

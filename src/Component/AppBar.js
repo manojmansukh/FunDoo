@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
 import { Appbar, FAB, Portal, Provider , Menu} from 'react-native-paper';
-import DialogReminder from './DialogReminder1'
+import DialogReminder from './DialogReminder'
 
 
 export default class BottomBar extends Component {

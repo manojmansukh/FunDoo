@@ -2,13 +2,14 @@ import * as React from 'react';
 import { StyleSheet, Image, Text, TextInput, TouchableOpacity } from 'react-native';
 import { View } from 'native-base';
 import moment from 'moment';
-import { saveNote } from '../Services/FireBaseDb'
 import Appbar from './AppBar'
 import BottomBar from './BottomBar'
-// import { saveNote } from '../Services/AxiosDb'
+import ToastExample from './ToastExample';
+//import { saveNote } from '../Services/AxiosDb'
+import { saveNote } from '../Services/FireBaseDb'
 import PushNotification from "react-native-push-notification"
 
-
+//ToastExample.show('Toast fully', ToastExample.SHORT);
 export default class CreateNotes extends React.Component {
 
   constructor(props) {
@@ -56,11 +57,15 @@ export default class CreateNotes extends React.Component {
     if (this.state.note == '' && this.state.title == '') {
       console.log("blanck");
       this.props.navigation.navigate('Notes')
+      ToastExample.show('Note Discarded', ToastExample.SHORT);
+
     }
     else {
       if (this.state.dateTime === '') {
         saveNote(this.state.title, this.state.note, this.state.date, this.state.time, this.state.pin, this.state.bgColor)
         this.props.navigation.navigate('Notes')
+        ToastExample.show('Note Create Successfully', ToastExample.SHORT);
+
       }
       else {
         PushNotification.localNotificationSchedule({
@@ -70,8 +75,15 @@ export default class CreateNotes extends React.Component {
           date: this.state.dateTime
         });
         //firebase method
+
+        //ToastExample.show('Note Create Successfully', ToastExample.SHORT);
         saveNote(this.state.title, this.state.note, this.state.date, this.state.time, this.state.pin, this.state.bgColor)
         this.props.navigation.navigate('Notes')
+        ToastExample.show('Note Create Successfully', ToastExample.SHORT);
+
+        setTimeout(() => {
+          ToastExample.show('Note Create Successfully', ToastExample.SHORT);
+        }, 2000)
       }
     }
   }
@@ -86,27 +98,14 @@ export default class CreateNotes extends React.Component {
   render() {
     return (
       <View style={{ flex: 1, width: '100%' }}>
+
         <Appbar handleSaveNote={this.handleSaveNote}
           handlePinStatus={this.handlePinStatus}
           handleShowDialog={this.handleShowDialog}
           handleCloseDialog={this.handleCloseDialog}
           handleArchiveStatus={this.handleArchiveStatus}
         />
-        {/* <Appbar style={styles.top}>
-          <Appbar.Action icon={require('../Image/arrow_back.png')}
-            onPress={() => {
-              this.handleSaveNote()
-              this.props.navigation.navigate('Notes')
-            }} />
 
-          <View style={{ flexDirection: 'row', flex: 1, justifyContent: 'flex-end' }}>
-            <Appbar.Action icon={this.state.pin ? require('../Image/pin.png') : require('../Image/unpin.png')}
-              onPress={() => this.setState({ pin: !this.state.pin }, () => { console.log("manoj" + this.state.pin) })} />
-            <Appbar.Action icon={require('../Image/bell1.png')} onPress={this.showDialog} />
-            <Appbar.Action icon={this.state.archive ? require('../Image/Archive.png') : require('../Image/Unarchive.png')}
-              onPress={() => this.setState({ archive: !this.state.archive })} />
-          </View>
-        </Appbar> */}
 
         <View style={{ height: '83%', width: '100%', backgroundColor: this.state.bgColor }}>
           <TextInput multiline={true}
@@ -120,7 +119,6 @@ export default class CreateNotes extends React.Component {
             underlineColorAndroid="transparent"
             placeholder="Note"
             onChangeText={(text) => this.setState({ note: text })} />
-
         </View>
 
         <BottomBar handleBgColour={this.handleNoteBgColour} />

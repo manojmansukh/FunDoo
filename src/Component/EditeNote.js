@@ -7,7 +7,7 @@ import DialogReminder from './DialogReminder'
 import moment from 'moment';
 import PushNotification from "react-native-push-notification"
 import { editNote, setReminder, moveToTrash } from '../Services/FireBaseDb'
-// import { editNote, setReminder, moveToTrash } from '../Services/AxiosDb'
+//import { editNote, setReminder, moveToTrash } from '../Services/AxiosDb'
 
 
 export default class EditeNotes extends React.Component {

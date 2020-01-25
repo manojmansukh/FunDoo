@@ -2,7 +2,7 @@ package com.fundooapp;
 
 import android.app.Application;
 import android.content.Context;
-
+import com.fundooapp.CustomToastPackage;
 import com.facebook.CallbackManager;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
@@ -41,6 +41,7 @@ public class MainApplication extends Application implements ReactApplication {
             //packages.add(new RNFirebasePackage());
             packages.add(new RNFirebaseMessagingPackage());
             packages.add(new RNFirebaseNotificationsPackage());
+            packages.add(new CustomToastPackage());
 
             //packages.add(new FBSDKPackage(mCallbackManager));
           // Packages that cannot be autolinked yet can be added manually here, for example:

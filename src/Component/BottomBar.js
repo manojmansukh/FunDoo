@@ -20,7 +20,7 @@ export default class BottomBar extends Component {
     return (
       <Provider>
       <Appbar.Header style={{ backgroundColor: 'white', justifyContent: 'space-between' }}>
-      <Appbar.Action icon={require('../Image/AddBox.png')} onPress={this._handleMore} />
+      <Appbar.Action icon={require('../Image/AddBox.png')} style={{}}onPress={this._handleMore} />
       <Text>Edited {this.state.currentTime}</Text>
       <Menu
         visible={this.state.visible}
