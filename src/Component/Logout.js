@@ -3,6 +3,7 @@ import { View } from "react-native";
 import { Card, Button, Text } from "react-native-elements";
 import { onSignOut } from "./Authentication";
 import { removeUserId } from '../Services/FireBaseDb'
+
 export default ({ navigation }) => (
   <View style={{ paddingVertical: 20 }}>
     <Card title="John Doe">

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
 import AppBar1 from './AppBar1'
+import { styles } from '../CSS/Help.Style'
 
 export default class Help extends Component {
 
@@ -16,13 +17,3 @@ export default class Help extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  MainContainer: {
-    flex: 1,
-    paddingTop: 20,
-    alignItems: 'center',
-    marginTop: 50,
-    justifyContent: 'center',
-  },
-});

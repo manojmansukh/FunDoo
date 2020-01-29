@@ -1,11 +1,8 @@
-//This is an example code for NavigationDrawer//
 import React, { Component } from 'react';
-//import react in our code.
 import { View, Image, Text, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createStackNavigator } from 'react-navigation-stack';
-//import { Appbar, Card } from 'react-native-paper';
 
 import Home from './Home'
 import Notes from './Dashboard';
@@ -17,6 +14,7 @@ import Help from './Help';
 import CreateLable from './CreateLabel';
 import Logout from './Logout'
 import Appbar1 from './AppBar1'
+
 class NavigationDrawerStructure extends Component {
   constructor(props) {
     super(props)
@@ -24,14 +22,10 @@ class NavigationDrawerStructure extends Component {
       gridView: true,
     }
   }
-  toggleDrawer = () => {
-    //Props to open/close the drawer
-    this.props.navigationProps.toggleDrawer();
-  };
-  listView = () => {
-    console.log("hoii");
-    this.setState({ gridView: !this.state.gridView });
-  }
+
+  toggleDrawer = () => { this.props.navigationProps.toggleDrawer() }
+
+  listView = () => { this.setState({ gridView: !this.state.gridView }) }
 
   render() {
     return (
@@ -54,9 +48,6 @@ class NavigationDrawerStructure extends Component {
         
         </Appbar> */}
       </View>
-
-
-
     );
   }
 }
@@ -80,19 +71,18 @@ class NavigationDrawerStructure extends Component {
 const Notes_StackNavigator = createStackNavigator({
   Notes: {
     screen: Notes,
-   //navigationOptions : {header : null},
     navigationOptions: ({ navigation }) => ({
-      header :null,
+      header: null,
     }),
-   },
- });
+  },
+});
 
 const Reminder_StackNavigator = createStackNavigator({
   Reminder: {
     screen: Reminder,
     navigationOptions: ({ navigation }) => ({
       header: null,
-     
+
     }),
   },
 });
@@ -101,9 +91,7 @@ const CreateLabel_StackNavigator = createStackNavigator({
   Reminder: {
     screen: CreateLable,
     navigationOptions: ({ navigation }) => ({
-      //title: 'Create Label',
       header: null,
-      
     }),
   },
 });
@@ -121,9 +109,7 @@ const Deleted_StackNavigator = createStackNavigator({
   Archive: {
     screen: Deleted,
     navigationOptions: ({ navigation }) => ({
-     
       header: null,
-      
     }),
   },
 });
@@ -132,9 +118,7 @@ const Settings_StackNavigator = createStackNavigator({
   Archive: {
     screen: Settings,
     navigationOptions: ({ navigation }) => ({
-     
       header: null,
-      
     }),
   },
 });
@@ -143,19 +127,16 @@ const Help_StackNavigator = createStackNavigator({
   Archive: {
     screen: Help,
     navigationOptions: ({ navigation }) => ({
-     
       header: null,
-     
     }),
   },
 });
+
 const Logout_StackNavigator = createStackNavigator({
   Archive: {
     screen: Logout,
     navigationOptions: ({ navigation }) => ({
-      //title: 'Logout',
       header: null,
-     
     }),
   },
 });
@@ -175,6 +156,7 @@ const AppDrawerNavigator = createDrawerNavigator({
   //     ),
   //   },
   // },
+
   NavNotes: {
     screen: Notes_StackNavigator,
     navigationOptions: {
@@ -188,6 +170,7 @@ const AppDrawerNavigator = createDrawerNavigator({
       ),
     },
   },
+
   NavReminder: {
     screen: Reminder_StackNavigator,
     navigationOptions: {
@@ -215,6 +198,7 @@ const AppDrawerNavigator = createDrawerNavigator({
       ),
     },
   },
+
   NavArchive: {
     screen: Archive_StackNavigator,
     navigationOptions: {
@@ -229,9 +213,8 @@ const AppDrawerNavigator = createDrawerNavigator({
     },
   },
 
-
   NavDeleted: {
-    //Title
+
     screen: Deleted_StackNavigator,
     navigationOptions: {
       drawerLabel: 'Deleted',
@@ -246,7 +229,6 @@ const AppDrawerNavigator = createDrawerNavigator({
   },
 
   NavSettings: {
-    //Title
     screen: Settings_StackNavigator,
     navigationOptions: {
       drawerLabel: 'Settings',
@@ -261,7 +243,6 @@ const AppDrawerNavigator = createDrawerNavigator({
   },
 
   NavHelp: {
-    //Title
     screen: Help_StackNavigator,
     navigationOptions: {
       drawerLabel: 'Help & FeedBack',
@@ -276,7 +257,6 @@ const AppDrawerNavigator = createDrawerNavigator({
   },
 
   NavLogout: {
-    //Title
     screen: Logout_StackNavigator,
     navigationOptions: {
 
@@ -292,20 +272,6 @@ const AppDrawerNavigator = createDrawerNavigator({
   },
 
 },
-
-  // {
-  //   //For the Custom sidebar menu we have to provide our CustomSidebarMenu
-  //   contentComponent: CustomSidebarMenu,
-  //   //Sidebar width
-  //   drawerWidth: Dimensions.get('window').width - 130,
-  // }
-
 );
 
 export default createAppContainer(AppDrawerNavigator);
-const styles = StyleSheet.create({
-  icon: {
-    width: 24,
-    height: 24,
-  },
-});

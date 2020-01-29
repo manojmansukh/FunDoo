@@ -17,16 +17,14 @@ export default class DialogReminderr extends Component {
   }
 
   convert12hour = (dm) => {
-    console.log('mkkkk', dm);
-
     var timeString = dm;
     var H = +timeString.substr(0, 2);
     var h = H % 12 || 12;
     var ampm = (H < 12 || H === 24) ? "AM" : "PM";
     timeString = h + timeString.substr(2, 3) + ampm;
-    console.log("current time:", timeString);
     this.setState({ setTime: timeString })
   }
+
   _showDatePicker = () => this.setState({ isDatePickerVisible: true });
 
   _hideDatePicker = () => this.setState({ isDatePickerVisible: false });
@@ -39,13 +37,10 @@ export default class DialogReminderr extends Component {
 
     var mj = JSON.stringify(date)
     var Date1 = mj.slice(1, 11)
-    console.log(Date1);
     this.setState({ date: Date1 })
-    // this._hideDatePicker();
   };
 
   _handleTimePicked = (date) => {
-    console.log('in time picker');
     var d = " " + date
     var dm = d.slice(17, 25)
     this.convert12hour(dm);
@@ -53,22 +48,15 @@ export default class DialogReminderr extends Component {
 
     var mj = JSON.stringify(date)
     var Time1 = mj.slice(11, 25)
-    console.log(Time1);
-
     this.setState({ time: Time1 })
 
-    //this._hideTimePicker();
   };
 
   handleNotification = () => {
-    console.log("concate");
-
     var date = this.state.date + this.state.time
-    console.log(date);
     var date23 = new Date(date)
     
     if (this.state.time !== null && this.state.date !== null) {
-      console.log("in if else");
       this.props.handleSave(this.state.date, this.state.setTime, date23)
     }
     else {

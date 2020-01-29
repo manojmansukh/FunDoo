@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View } from 'react-native';
-import { Button, Paragraph, Menu, Divider, Provider } from 'react-native-paper';
+import { Button, Menu, Divider, Provider } from 'react-native-paper';
 
 export default class MyComponent extends React.Component {
   state = {
@@ -27,10 +27,10 @@ export default class MyComponent extends React.Component {
               <Button onPress={this._openMenu}>Show menu</Button>
             }
           >
-            <Menu.Item onPress={() => {}} title="Item 1" />
-            <Menu.Item onPress={() => {}} title="Item 2" />
+            <Menu.Item onPress={() => { }} title="Item 1" />
+            <Menu.Item onPress={() => { }} title="Item 2" />
             <Divider />
-            <Menu.Item onPress={() => {}} title="Item 3" />
+            <Menu.Item onPress={() => { }} title="Item 3" />
           </Menu>
         </View>
       </Provider>

@@ -9,8 +9,8 @@ import { Chip, } from 'react-native-paper';
 import AppBarSelectedNotes from './AppBarSelectedNotes';
 import PushNotification from "react-native-push-notification";
 import Bottombar1 from './Bottombar1';
-import { styles } from '../StyleSheet/DashboardStyle'
-import { FlatList, Text, ScrollView, TouchableOpacity, Linking} from 'react-native';
+import { styles } from '../CSS/Dashboard.Style'
+import { FlatList, Text, ScrollView, TouchableOpacity, Linking } from 'react-native';
 import { getNotes, setPin, setArchive, setTrash, PermanentDelete } from '../Services/FireBaseDb';
 //import { getNotes, setPin, setArchive, setTrash, } from '../Services/AxiosDb';
 
@@ -41,14 +41,8 @@ export default class Notes extends React.Component {
   }
 
   showNotification = (dateTime, note, title) => {
-    console.log('Datenotification', dateTime)
-    console.log('Note', note);
-    console.log('Title', title);
-    console.log('currentTime', this.state.currentTime)
-    console.log('dateTime', dateTime)
-    if (this.state.currentTime === dateTime) {
-      console.log("mjjjj");
 
+    if (this.state.currentTime === dateTime) {
       PushNotification.localNotification({
         title: title,
         message: note,
@@ -56,22 +50,17 @@ export default class Notes extends React.Component {
         vibrate: true,
       })
     }
-
   }
 
 
   handleSelectionMode = (mode) => {
-    console.log("selectionModde", mode);
     this.setState({ selectionMode: mode })
     this.setState({ selectedData: [] })
   }
 
-  handleNavigation = () => {
-    this.props.navigation.navigate('CreateNote')
-  }
+  handleNavigation = () => { this.props.navigation.navigate('CreateNote') }
 
   //selected node operation.
-
   handlePinStatus = (status) => {
     this.setState({ pin: status }, () => {
       this.state.selectedData.map(currentNoteId => (
@@ -184,12 +173,12 @@ export default class Notes extends React.Component {
     * Triggered when a particular notification has been received in foreground
     *
    */
-  console.log('notification'),
-  
-    this.notificationListener = firebase.notifications().onNotification((notification) => {
-      const { title, body } = notification;
-      this.showAlert(title, body);
-    });
+    console.log('notification'),
+
+      this.notificationListener = firebase.notifications().onNotification((notification) => {
+        const { title, body } = notification;
+        this.showAlert(title, body);
+      });
 
     /*
     * If your app is in background, you can listen for when a notification is clicked / tapped / opened as follows:
@@ -226,7 +215,7 @@ export default class Notes extends React.Component {
     );
   }
 
-  handleBrowserOpen = () =>{
+  handleBrowserOpen = () => {
     Linking.openURL(URL).catch((err) => console.error('An error occurred', err));
   }
 
@@ -377,8 +366,8 @@ export default class Notes extends React.Component {
           </ScrollView>
         </View >
 
-        <Bottombar1 handleNavigation = {this.handleNavigation}
-                    handleBrowserOpen = { this.handleBrowserOpen}
+        <Bottombar1 handleNavigation={this.handleNavigation}
+          handleBrowserOpen={this.handleBrowserOpen}
         />
 
       </View>

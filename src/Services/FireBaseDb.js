@@ -3,6 +3,7 @@ import firebase from '../fireBase/Config'
 import { AsyncStorage } from "react-native";
 var uid ;
 
+
 export function getUserId() {
     console.log('<<<<<<<<<<<<<<<<<mjjj');
     AsyncStorage.getItem("UserId").then((value) => {
@@ -19,6 +20,13 @@ export function removeUserId() {
      uid=''
      console.log('<<<<<<<<<<<',uid);
      
+}
+
+export function getUserName(callback) {
+    const ref = firebase.database().ref('/users/' + uid + '/personal/')
+    ref.on('value', (snapshot) => {        
+        callback(snapshot.val())
+    })
 }
 
 export function getNotes(callback) {

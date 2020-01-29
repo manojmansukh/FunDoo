@@ -6,7 +6,7 @@ import com.fundooapp.CustomToastPackage;
 import com.facebook.CallbackManager;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
-import com.rnfingerprint.FingerprintAuthPackage;
+//import com.rnfingerprint.FingerprintAuthPackage;
 import com.oblador.keychain.KeychainPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;

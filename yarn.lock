@@ -6876,6 +6876,13 @@ react-native-paper@^3.4.0:
     color "^3.1.2"
     react-native-safe-area-view "^0.14.6"
 
+react-native-pin-view@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-pin-view/-/react-native-pin-view-3.0.0.tgz#a8d3326f97267838f4973114fca668a91f5ba442"
+  integrity sha512-6REScMNTIjhdRs7JUe1wbpz19OM4BcpLRI3w/WIvNCWyLppZlUOE4qne5jsQziUefN5vFlvxyiT4NwrNgQy1Ig==
+  dependencies:
+    prop-types "^15.7.2"
+
 react-native-popup-dialog@^0.18.3:
   version "0.18.3"
   resolved "https://registry.yarnpkg.com/react-native-popup-dialog/-/react-native-popup-dialog-0.18.3.tgz#5d7a13fd7d9f817cf2121965a3b100a257201b67"

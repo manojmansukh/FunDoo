@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { StyleSheet, Image, FlatList, Text, ScrollView, TouchableHighlight, ActivityIndicator, TouchableOpacity, Title } from 'react-native';
+import { StyleSheet, FlatList, Text, TouchableOpacity } from 'react-native';
 import { View } from 'native-base';
 import firebase from '../fireBase/Config'
 import { AsyncStorage } from "react-native";
-import { Avatar, Chip, Snackbar } from 'react-native-paper';
+import { Chip } from 'react-native-paper';
 import { SearchBar } from 'react-native-elements';
 
 export default class Notes extends React.Component {
@@ -13,15 +13,15 @@ export default class Notes extends React.Component {
             notes: null,
             dataSource: [],
             search: '',
-            arrayholder : [],
+            arrayholder: [],
         };
-        
     }
+
     searchFilterFunction = text => {
-        
         this.setState({
             value: text,
         });
+
         const newData = this.state.arrayholder.filter(item => {
             const itemData = `${item.Title.toUpperCase()} ${item.Note.toUpperCase()} `;
             const textData = text.toUpperCase();
@@ -33,33 +33,26 @@ export default class Notes extends React.Component {
     };
 
     componentDidMount() {
-        console.log("search");
         AsyncStorage.getItem("UserId", (error, result) => {
             // .orderByChild('Archive').equalTo(false)
             firebase.database().ref('/users/' + result + '/Notes/')
                 .on('value', (snapshot) => {
-                    console.log('userIddd:' + result);
                     var data = snapshot.val();
-                    console.log("mjjjjjjjjjj", data);
                     this.setState({
                         dataSource: data,
                         listView: true,
-                    }
-                        , () => {
-                            var arrayholder = [];
-                            this.state.dataSource !== null ?
-                             Object.keys(this.state.dataSource).map(async(key) => {
-                                    var Key = key
-                                    var data = this.state.dataSource[key]
-                                    console.log('mjData',data);
-                                    this.state.dataSource[key].noteId=key
-                                    arrayholder.push(this.state.dataSource[key])
-                                await this.setState({arrayholder : arrayholder})
-                                console.log('state',this.state.arrayholder);
-                                })
-                                : null   
-                        }
-                    )
+                    }, () => {
+                        var arrayholder = [];
+                        this.state.dataSource !== null ?
+                            Object.keys(this.state.dataSource).map(async (key) => {
+                                var Key = key
+                                var data = this.state.dataSource[key]
+                                this.state.dataSource[key].noteId = key
+                                arrayholder.push(this.state.dataSource[key])
+                                await this.setState({ arrayholder: arrayholder })
+                            })
+                            : null
+                    })
                 });
         })
     }
@@ -76,6 +69,7 @@ export default class Notes extends React.Component {
                     autoCorrect={false}
                     value={this.state.value}
                 />
+                
                 <FlatList
                     data={Object.keys(this.state.dataSource)}
                     renderItem={({ item }) =>

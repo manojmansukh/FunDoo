@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { View, TouchableOpacity, Image, Switch, Text, KeyboardAvoidingView, ScrollView, StyleSheet, TextInput } from "react-native";
+import { View, TouchableOpacity, Image, Text, KeyboardAvoidingView, ScrollView, StyleSheet, TextInput } from "react-native";
 import firebase from '../fireBase/Config'
+import { styles } from '../CSS/Registration.Style'
 
-
-export default class Login extends Component {
+export default class RegistrationPage extends Component {
     static navigationOptions = ({ navigation }) => {
         return {
             title: "FunDoo",
@@ -22,19 +22,13 @@ export default class Login extends Component {
             Confirmpassword: '',
             hidePassword: true,
             hideConfirmPassword: true,
-
         }
         this.handleSumbit = this.handleSumbit.bind(this);
     }
-    managePasswordVisibility = () => {
-        console.log("hoii");
 
-        this.setState({ hidePassword: !this.state.hidePassword });
-    }
+    managePasswordVisibility = () => { this.setState({ hidePassword: !this.state.hidePassword }) }
 
-    manageConfirmPasswordVisibility = () => {
-        this.setState({ hideConfirmPassword: !this.state.hideConfirmPassword });
-    }
+    manageConfirmPasswordVisibility = () => { this.setState({ hideConfirmPassword: !this.state.hideConfirmPassword }) }
 
     validateText = (text, field) => {
         var name = /^[a-z\d]{2,12}$/i;
@@ -55,7 +49,6 @@ export default class Login extends Component {
     }
 
     validateEmail = (text) => {
-        console.log(text);
         let email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         if (email.test(text) === false) {
             this.setState({ emailError: 'Required and Must be a valid email' });
@@ -69,7 +62,6 @@ export default class Login extends Component {
     }
 
     validatePassword = (text) => {
-        console.log(text);
         let pass = /^[#\w@_-]{8,20}$/
         if (pass.test(text) === false) {
             this.setState({ password: text })
@@ -97,10 +89,8 @@ export default class Login extends Component {
 
     handleSumbit = () => {
         if (this.state.firstNameError == null && this.state.lastNameError == null && this.state.emailError == null && this.state.passwordError == null && this.state.confirmPasswordError == null) {
-            firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((succes) =>{
-              console.log("hiii");
-              console.log(JSON.stringify(succes));  
-                firebase.database().ref('/users/'+succes.user.uid+'/personal').set({
+            firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((succes) => {
+                firebase.database().ref('/users/' + succes.user.uid + '/personal').set({
                     firstName: this.state.firstName,
                     lastNamae: this.state.lastName,
                     email: this.state.email,
@@ -202,102 +192,3 @@ export default class Login extends Component {
         );
     }
 }
-const styles = StyleSheet.create({
-    wrapper: {
-        flex: 1,
-        backgroundColor: "#daebf4",
-    },
-    innerView: {
-        flex: 1,
-        width: '100%',
-        backgroundColor: "white",
-    },
-    TitleText: {
-        display: 'flex',
-        alignSelf: "center",
-        width: '90%',
-        marginTop: 20,
-        marginBottom: 60,
-        fontSize: 30,
-        fontWeight: "bold",
-    },
-    deepView: {
-        display: 'flex',
-        flexDirection: "row",
-        alignSelf: 'center',
-    },
-    input: {
-        width: '90%',
-        height: '8%',
-        borderColor: '#FF9800',
-        alignSelf: "center",
-        borderWidth: .7
-
-    },
-    text: {
-        marginTop: -3,
-        width: '90%',
-        alignSelf: 'center'
-    },
-    shortInput: {
-        alignSelf: 'flex-start',
-        marginTop: 10,
-        marginHorizontal: 10,
-        width: '38%',
-        height: '70%',
-        borderColor: '#FF9800',
-        borderWidth: .7,
-    },
-    longInput: {
-        backgroundColor: 'red',
-        top: 5,
-        height: 40,
-        width: 339,
-        borderColor: '#FF9800',
-        alignSelf: "center",
-        borderWidth: 1,
-    },
-    submitButton: {
-        alignSelf: "center",
-        backgroundColor: '#FF9800',
-        margin: 10,
-        height: 40,
-        width: '40%',
-        fontSize: 30,
-    },
-    submitButtonText: {
-        color: 'white',
-        padding: 10,
-        alignSelf: "center"
-    },
-    error: {
-        color: 'red',
-        width: '90%',
-        marginTop: 1,
-        marginHorizontal: 30,
-        flexDirection: "row",
-        fontSize: 11,
-    },
-    errorPassword: {
-        color: 'red',
-        width: '35%',
-        marginTop: -6,
-        marginHorizontal: 30,
-        flexDirection: "row",
-        fontSize: 11,
-    },
-    //     btnImage:
-    //   {
-    //     resizeMode: 'contain',
-    //     height: '5%',
-    //     width: '5%'
-    //   },
-    //   visibilityBtn:
-    //   {
-    //     position: 'relative',
-    //     //right: 20,
-    //     //height: 190,
-    //     //width: 35,
-    //     padding: 5
-    //   },
-});

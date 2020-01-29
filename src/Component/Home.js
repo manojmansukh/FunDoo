@@ -1,8 +1,6 @@
 
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
-
-
+import { View, Text } from 'react-native';
  
 export default class Home extends Component {
   //Screen1 Component

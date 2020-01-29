@@ -1,17 +1,17 @@
 import * as React from 'react';
-import { StyleSheet, Image, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, Icon } from 'react-native';
+import { StyleSheet, TextInput } from 'react-native';
 import { View } from 'native-base';
-import Appbar from './AppBar'
+import Appbar from './AppBar';
 import BottomBar from './BottomBar';
-import DialogReminder from './DialogReminder'
+import DialogReminder from './DialogReminder';
 import moment from 'moment';
-import PushNotification from "react-native-push-notification"
+import PushNotification from "react-native-push-notification";
+import { styles } from '../CSS/EditeNotes.Style'
 import { editNote, setReminder, moveToTrash } from '../Services/FireBaseDb'
 //import { editNote, setReminder, moveToTrash } from '../Services/AxiosDb'
 
 
 export default class EditeNotes extends React.Component {
-
   constructor(props) {
     super(props)
     this.state = {
@@ -29,18 +29,10 @@ export default class EditeNotes extends React.Component {
     }
     this.handleSaveNote = this.handleSaveNote.bind(this);
   }
-  showDialog = () => {
-    console.log('mj');
-    this.setState({ dialogVisible: true }, () => {
-      console.log('Hiii' + this.state.dialogVisible);
-    });
-  };
 
-  handleCancel = () => {
-    this.setState({ dialogVisible: false }, () => {
-      console.log("handle cancle");
-    });
-  };
+  showDialog = () => { this.setState({ dialogVisible: true }) }
+
+  handleCancel = () => { this.setState({ dialogVisible: false }) }
 
   handleDelete = () => {
     this.setState({ trash: true }, () => {
@@ -52,7 +44,6 @@ export default class EditeNotes extends React.Component {
   }
 
   handleSaveReminder = (date, time, dateTime) => {
-    console.log(dateTime);
 
     PushNotification.localNotificationSchedule({
       //... You can use all the options from localNotifications
@@ -61,17 +52,13 @@ export default class EditeNotes extends React.Component {
       date: dateTime // in 60 secs
     });
 
-    this.setState({ date: date }, () => { console.log("Date:" + this.state.date); })
+    this.setState({ date: date })
     this.setState({ time: time }, () => {
       var currentNoteId = this.props.navigation.state.params.currentNoteId
       //firebase Method
       setReminder(currentNoteId, this.state.date, this.state.time)
-
-
     })
-    console.log(this.props.navigation.state.params.currentNoteId);
-    this.setState({ dialogVisible: false }, () => {
-    });
+    this.setState({ dialogVisible: false });
   };
 
   handleSaveNote = () => {
@@ -98,7 +85,6 @@ export default class EditeNotes extends React.Component {
       dataSource: this.props.navigation.state.params.inform,
       currentTime: date
     }, () => {
-      console.log("mjjj:", this.state.dataSource.color);
       this.setState({
         title: this.state.dataSource.Title,
         note: this.state.dataSource.Note,
@@ -107,16 +93,10 @@ export default class EditeNotes extends React.Component {
         trash: this.state.dataSource.Trash,
         bgColor: this.state.dataSource.BgColor
       })
-
     })
   }
+
   render() {
-    let selectedColor = '#fff';
-    console.log(this.props.navigation.state.params);
-    console.log("pin status:" + this.state.col);
-
-    console.log(this.props.navigation.state.params.currentNoteId);
-
     return (
       <View style={{ flex: 1 }}>
         <Appbar handleSaveNote={this.handleSaveNote}
@@ -170,25 +150,3 @@ export default class EditeNotes extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  top: {
-    backgroundColor: 'white',
-    width: '100%',
-    left: 0,
-    right: 0,
-    bottom: 0,
-    borderWidth: .1,
-  },
-  input: {
-    width: '100%',
-    left: 0,
-    right: 0,
-    bottom: 0,
-    borderWidth: .1,
-    fontSize: 30,
-
-
-
-  },
-});

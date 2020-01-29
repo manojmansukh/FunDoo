@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { StyleSheet, Image, Text, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, TextInput } from 'react-native';
 import { View } from 'native-base';
+import { styles } from '../CSS/CreateNotes.Style'
 import moment from 'moment';
 import Appbar from './AppBar'
 import BottomBar from './BottomBar'
@@ -9,9 +10,7 @@ import ToastExample from './ToastExample';
 import { saveNote } from '../Services/FireBaseDb'
 import PushNotification from "react-native-push-notification"
 
-//ToastExample.show('Toast fully', ToastExample.SHORT);
 export default class CreateNotes extends React.Component {
-
   constructor(props) {
     super(props)
     this.state = {
@@ -28,7 +27,6 @@ export default class CreateNotes extends React.Component {
       visible: false,
       currentTime: '',
       dateTime: '',
-
     }
     this.handleSaveNote = this.handleSaveNote.bind(this);
   }
@@ -55,12 +53,11 @@ export default class CreateNotes extends React.Component {
 
   handleSaveNote = () => {
     if (this.state.note == '' && this.state.title == '') {
-      console.log("blanck");
       this.props.navigation.navigate('Notes')
       ToastExample.show('Note Discarded', ToastExample.SHORT);
-
     }
     else {
+
       if (this.state.dateTime === '') {
         saveNote(this.state.title, this.state.note, this.state.date, this.state.time, this.state.pin, this.state.bgColor)
         this.props.navigation.navigate('Notes')
@@ -75,8 +72,6 @@ export default class CreateNotes extends React.Component {
           date: this.state.dateTime
         });
         //firebase method
-
-        //ToastExample.show('Note Create Successfully', ToastExample.SHORT);
         saveNote(this.state.title, this.state.note, this.state.date, this.state.time, this.state.pin, this.state.bgColor)
         this.props.navigation.navigate('Notes')
         ToastExample.show('Note Create Successfully', ToastExample.SHORT);
@@ -87,6 +82,7 @@ export default class CreateNotes extends React.Component {
       }
     }
   }
+
   componentDidMount() {
     var date = moment()
       .utcOffset('+05:30')
@@ -95,6 +91,7 @@ export default class CreateNotes extends React.Component {
       currentTime: date
     })
   }
+
   render() {
     return (
       <View style={{ flex: 1, width: '100%' }}>
@@ -105,7 +102,6 @@ export default class CreateNotes extends React.Component {
           handleCloseDialog={this.handleCloseDialog}
           handleArchiveStatus={this.handleArchiveStatus}
         />
-
 
         <View style={{ height: '83%', width: '100%', backgroundColor: this.state.bgColor }}>
           <TextInput multiline={true}
@@ -123,29 +119,8 @@ export default class CreateNotes extends React.Component {
 
         <BottomBar handleBgColour={this.handleNoteBgColour} />
 
-
       </View>
 
     );
   }
 }
-
-const styles = StyleSheet.create({
-  top: {
-    backgroundColor: 'white',
-    width: '100%',
-    left: 0,
-    right: 0,
-    bottom: 0,
-    borderWidth: .1,
-  },
-  input: {
-    marginTop: 10,
-    width: '90%',
-    height: 70,
-    alignSelf: "center",
-    borderBottomColor: 'black',
-    fontSize: 30,
-    //Horizontal:50
-  },
-});
