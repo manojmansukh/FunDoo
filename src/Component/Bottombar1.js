@@ -11,10 +11,14 @@ export default class Bottombar1 extends Component {
           <Appbar.Action icon={require('../Image/tick.png')} />
           <Appbar.Action icon={require('../Image/brush.png')} />
           <Appbar.Action icon={require('../Image/miceicon.png')} />
-          <Appbar.Action icon={require('../Image/imageicon.png')} />
+          {/* <Appbar.Action icon={require('../Image/imageicon.png')} /> */}
           <TouchableOpacity onPress={this.props.handleBrowserOpen}>
             <Image source={require('../Image/Google2.png')}
               style={{ height: 20, width: 20, margin: 9, top: 5 }} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.props.handleWhatsappOpen}>
+            <Image source={require('../Image/Whatsapp.jpeg')}
+              style={{ height: 30, width: 30, margin: 9, top: 0 }} />
           </TouchableOpacity>
         </View>
 

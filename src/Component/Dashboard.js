@@ -215,13 +215,17 @@ export default class Notes extends React.Component {
     );
   }
 
+  handleWhatsappOpen = () => {
+    Linking.openURL(`whatsapp://send?phone=${918605621964}&text=${"console.disableYellowBox = true;"}`);
+  }
+
   handleBrowserOpen = () => {
     Linking.openURL(URL).catch((err) => console.error('An error occurred', err));
   }
 
   async componentDidMount() {
-    this.checkPermission();
-    this.createNotificationListeners();
+    //this.checkPermission();
+    //this.createNotificationListeners();
     const nameList = ''
 
     //getNotes1();
@@ -267,8 +271,8 @@ export default class Notes extends React.Component {
 
 
   componentWillUnmount() {
-    this.notificationListener();
-    this.notificationOpenedListener();
+   // this.notificationListener();
+    //this.notificationOpenedListener();
   }
 
   render() {
@@ -368,6 +372,7 @@ export default class Notes extends React.Component {
 
         <Bottombar1 handleNavigation={this.handleNavigation}
           handleBrowserOpen={this.handleBrowserOpen}
+          handleWhatsappOpen={this.handleWhatsappOpengit}
         />
 
       </View>
