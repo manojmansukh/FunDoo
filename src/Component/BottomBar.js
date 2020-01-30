@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text } from 'react-native';
 import { Appbar, FAB, Portal, Provider, Menu } from 'react-native-paper';
 import ColorPalette from 'react-native-color-palette'
+import moment from 'moment';
 
 export default class BottomBar extends Component {
   constructor(props) {
@@ -9,12 +10,22 @@ export default class BottomBar extends Component {
     this.state = {
       bgColor: '',
       visible: false,
+      currentTime:''
     }
   }
   
   _openMenu = () => this.setState({ visible: true });
 
   _closeMenu = () => this.setState({ visible: false });
+
+  componentDidMount() {
+    var date = moment()
+      .utcOffset('+05:30')
+      .format(' hh:mm A');
+    this.setState({
+      currentTime: date
+    })
+  }
 
   render() {
     return (
@@ -42,7 +53,12 @@ export default class BottomBar extends Component {
               title=''
               onChange={color => this.setState({ bgColor: color }, () => { this.props.handleBgColour(this.state.bgColor) })}
               defaultColor={'#ffff'}
-              colors={['#ffff', '#ffeb3b', '#f44336', '#74FF3B', '#9B59B6', '#00FFF5', '#2980B9', '#E74C3C']}
+              colors={[
+                '#ffffff', '#f28b82', 
+                '#fbbc04', '#fff475',
+                '#ccff90', '#a7ffeb', 
+                '#d7aefb', '#fdcfe8'
+              ]}
             />
           </Menu>
         </Appbar.Header>

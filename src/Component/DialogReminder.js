@@ -55,6 +55,7 @@ export default class DialogReminderr extends Component {
   handleNotification = () => {
     var date = this.state.date + this.state.time
     var date23 = new Date(date)
+    console.log(date23);
     
     if (this.state.time !== null && this.state.date !== null) {
       this.props.handleSave(this.state.date, this.state.setTime, date23)

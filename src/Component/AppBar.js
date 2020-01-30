@@ -15,6 +15,7 @@ export default class BottomBar extends Component {
       archive: '',
       date: '',
       time: '',
+      dateTime:'',
     }
   }
 
@@ -29,7 +30,7 @@ export default class BottomBar extends Component {
     this.setState({ date: date, time: time, dateTime: dateTime })
     this.setState({ dialogVisible: false },
       () => {
-        this.props.handleCloseDialog(this.state.dialogVisible, this.state.date, this.state.time)
+        this.props.handleCloseDialog(this.state.dialogVisible, this.state.date, this.state.time, this.state.dateTime)
       });
   };
 

@@ -324,7 +324,7 @@ export default class Notes extends React.Component {
                           this.showNotification(dateTime, note, title),
 
                           this.state.pinData[item].Date !== undefined && this.state.pinData[item].Time !== undefined ?
-                            <Chip icon={require('../Image/add_Alarm.png')} style={{ bottom: 17, width: 180, marginLeft: 6, }}>{this.state.pinData[item].Date}{'  '}{this.state.pinData[item].Time}</Chip>
+                            <Chip icon={require('../Image/add_Alarm.png')} style={{ bottom: 0, width: 180, marginLeft: 6, }}>{this.state.pinData[item].Date}{'  '}{this.state.pinData[item].Time}</Chip>
                             : null
                         }
                       </View>
@@ -358,7 +358,7 @@ export default class Notes extends React.Component {
                         title = this.state.unPinData[item].Title,
                         //this.showNotification(dateTime,note,title),
                         this.state.unPinData[item].Date !== undefined && this.state.unPinData[item].Time !== undefined ?
-                          <Chip icon={require('../Image/add_Alarm.png')} style={{ bottom: 15, width: 180, marginLeft: 6 }}>{this.state.unPinData[item].Date}{'  '}{this.state.unPinData[item].Time}</Chip>
+                          <Chip icon={require('../Image/add_Alarm.png')} style={{ bottom: 0, width: 180, marginLeft: 6 }}>{this.state.unPinData[item].Date}{'  '}{this.state.unPinData[item].Time}</Chip>
                           : null
                       }
                     </View>

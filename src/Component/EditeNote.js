@@ -19,6 +19,7 @@ export default class EditeNotes extends React.Component {
       title: '',
       date: '',
       time: '',
+      dateTime: '',
       dataSource: [],
       pin: '',
       archive: '',
@@ -30,9 +31,9 @@ export default class EditeNotes extends React.Component {
     this.handleSaveNote = this.handleSaveNote.bind(this);
   }
 
-  showDialog = () => { this.setState({ dialogVisible: true }) }
+  handleShowDialog = (status) => { this.setState({ dialogVisible: status }) }
 
-  handleCancel = () => { this.setState({ dialogVisible: false }) }
+  handleCloseDialog = (status, date, time, dateTime) => { this.setState({ dialogVisible: status, date: date, time: time, dateTime: dateTime }) }
 
   handleDelete = () => {
     this.setState({ trash: true }, () => {
@@ -43,7 +44,7 @@ export default class EditeNotes extends React.Component {
     })
   }
 
-  handleSaveReminder = (date, time, dateTime) => {
+  handleSaveReminder = (status, date, time, dateTime) => {
 
     PushNotification.localNotificationSchedule({
       //... You can use all the options from localNotifications
@@ -58,11 +59,10 @@ export default class EditeNotes extends React.Component {
       //firebase Method
       setReminder(currentNoteId, this.state.date, this.state.time)
     })
-    this.setState({ dialogVisible: false });
+    this.setState({ dialogVisible: status });
   };
 
   handleSaveNote = () => {
-
     if (this.state.note == '' && this.state.title == '') {
       this.props.navigation.navigate('Notes')
     }
@@ -70,6 +70,7 @@ export default class EditeNotes extends React.Component {
       var currentNoteId = this.props.navigation.state.params.currentNoteId
       //firebase Method
       editNote(currentNoteId, this.state.title, this.state.note, this.state.pin, this.state.archive, this.state.trash, this.state.bgColor)
+      this.props.navigation.navigate('Notes')
     }
   }
 
@@ -102,8 +103,9 @@ export default class EditeNotes extends React.Component {
         <Appbar handleSaveNote={this.handleSaveNote}
           handlePinStatus={this.handlePinStatus}
           handleShowDialog={this.handleShowDialog}
-          handleCloseDialog={this.handleCloseDialog}
+          handleCloseDialog={this.handleSaveReminder}
           handleArchiveStatus={this.handleArchiveStatus}
+          handleSave={this.handleSaveReminder}
         />
         {/* <Appbar style={styles.top}>
           <Appbar.Action icon={require('../Image/arrow_back.png')}

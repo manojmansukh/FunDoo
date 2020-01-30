@@ -35,9 +35,11 @@ export default class CreateNotes extends React.Component {
 
   handlePinStatus = (status) => this.setState({ pin: status });
 
-  handleShowDialog = (status) => this.setState({ dialogVisible: true });
+  handleShowDialog = (status) => this.setState({ dialogVisible: status });
 
-  handleCloseDialog = (status, date, time) => this.setState({ dialogVisible: false, date: date, time: time });
+  handleCloseDialog = (status, date, time, dateTime) => {
+    this.setState({ dialogVisible: status ,date: date, time: time, dateTime: dateTime })
+  };
 
   handleArchiveStatus = (status) => this.setState({ archive: status });
 
@@ -59,12 +61,16 @@ export default class CreateNotes extends React.Component {
     else {
 
       if (this.state.dateTime === '') {
+        console.log('mjjjkkkkk');
+
         saveNote(this.state.title, this.state.note, this.state.date, this.state.time, this.state.pin, this.state.bgColor)
         this.props.navigation.navigate('Notes')
         ToastExample.show('Note Create Successfully', ToastExample.SHORT);
 
       }
       else {
+        console.log('mjjj');
+        
         PushNotification.localNotificationSchedule({
           //... You can use all the options from localNotifications
           message: this.state.title,
@@ -101,6 +107,7 @@ export default class CreateNotes extends React.Component {
           handleShowDialog={this.handleShowDialog}
           handleCloseDialog={this.handleCloseDialog}
           handleArchiveStatus={this.handleArchiveStatus}
+          handleSave={this.handleSave}
         />
 
         <View style={{ height: '83%', width: '100%', backgroundColor: this.state.bgColor }}>
