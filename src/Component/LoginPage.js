@@ -93,7 +93,7 @@ export default class Login extends Component {
           <View style={{ flexDirection: 'row', flexWrap: "wrap", justifyContent: 'center', alignItems: 'center', top: -5 }}>
 
             <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-              <Image source={require('../Image/Logo.png')}
+              <Image source={require('../Asserts/Logo.png')}
                 style={{ width: 300, height: 200, top: 30, tintColor: '#1e59c7' }}
                 resizeMode='contain'
               />
@@ -113,6 +113,7 @@ export default class Login extends Component {
 
             <View>
               <TextInput style={styles.input}
+                testID="email"
                 underlineColorAndroid="transparent"
                 placeholder="Email"
                 autoCapitalize="none"
@@ -122,6 +123,7 @@ export default class Login extends Component {
               <Text style={styles.error}>{this.state.emailError}</Text>
 
               <TextInput style={styles.input}
+                testID="password"
                 underlineColorAndroid="transparent"
                 placeholder="Password"
                 autoCapitalize="none"
@@ -133,7 +135,7 @@ export default class Login extends Component {
 
               <View>
                 <TouchableOpacity activeOpacity={0.8} style={styles.visibilityBtn} onPress={this.managePasswordVisibility}>
-                  <Image source={(this.state.hidePassword) ? require('../Image/hide.png') : require('../Image/show.png')} style={styles.btnImage} />
+                  <Image source={(this.state.hidePassword) ? require('../Asserts/hide.png') : require('../Asserts/show.png')} style={styles.btnImage} />
                 </TouchableOpacity>
               </View>
 
@@ -150,7 +152,7 @@ export default class Login extends Component {
               <TouchableOpacity
                 // style={styles.fbButton}
                 onPress={this.hadleFaceBookLogin}>
-                <Image source={require('../Image/FbLogin.png')}
+                <Image source={require('../Asserts/FbLogin.png')}
                   style={{ height: 40, width: 300, margin: 15, borderColor: 'black', borderWidth: .15, top: -15 }} />
               </TouchableOpacity>
 

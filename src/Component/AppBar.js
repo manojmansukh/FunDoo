@@ -41,17 +41,17 @@ export default class BottomBar extends Component {
   render() {
     return (
       <Appbar style={styles.top}>
-        <Appbar.Action icon={require('../Image/arrow_back.png')}
+        <Appbar.Action icon={require('../Asserts/arrow_back.png')}
           onPress={() => {
             this.props.handleSaveNote()
           }} />
         <View style={{ flexDirection: 'row', flex: 1, alignSelf: 'flex-end', justifyContent: 'flex-end' }}>
-          <Appbar.Action icon={this.state.pin ? require('../Image/pin.png') : require('../Image/unpin.png')}
+          <Appbar.Action icon={this.state.pin ? require('../Asserts/pin.png') : require('../Asserts/unpin.png')}
             onPress={() => this.setState({ pin: !this.state.pin }, () => { this.props.handlePinStatus(this.state.pin) })} />
-          <Appbar.Action icon={require('../Image/bell1.png')} onPress={this.showDialog} />
-          <Appbar.Action icon={this.state.archive ? require('../Image/Archive.png') : require('../Image/Unarchive.png')}
+          <Appbar.Action icon={require('../Asserts/bell1.png')} onPress={this.showDialog} />
+          <Appbar.Action icon={this.state.archive ? require('../Asserts/Archive.png') : require('../Asserts/Unarchive.png')}
             onPress={() => this.setState({ archive: !this.state.archive }, () => { this.props.handleArchiveStatus(this.state.archive) })} />
-          <Appbar.Action icon={require('../Image/Deleted.png')} onPress={() => this.handleDelete()} />
+          <Appbar.Action icon={require('../Asserts/Deleted.png')} onPress={() => this.handleDelete()} />
         </View>
 
         <DialogReminder dialogVisible={this.state.dialogVisible}

@@ -145,7 +145,7 @@ export default class Notes extends React.Component {
           <View style={{ flexDirection: 'row', width: '100%' }}>
 
             <TouchableOpacity onPress={() => this.toggleDrawer()}>
-              <Image source={require('../Image/drawer.png')}
+              <Image source={require('../Asserts/drawer.png')}
                 style={{ width: 25, height: 25, margin: 10, tintColor: 'black' }} />
             </TouchableOpacity>
 
@@ -157,7 +157,7 @@ export default class Notes extends React.Component {
                       this.handleListView(this.state.ListView)
                     });
                   }}>
-                  <Image source={(this.state.ListView) ? require('../Image/List4.png') : require('../Image/Grid2.png')}
+                  <Image source={(this.state.ListView) ? require('../Asserts/List4.png') : require('../Asserts/Grid2.png')}
                     style={{ top: 0, width: 25, height: 25, margin: 10 }} />
                 </TouchableOpacity>
 
@@ -165,7 +165,7 @@ export default class Notes extends React.Component {
                   visible={this.state.visible}
                   onDismiss={this._closeMenu}
                   anchor={
-                    <Appbar.Action icon={require('../Image/More.png')} onPress={this._openMenu} />
+                    <Appbar.Action icon={require('../Asserts/More.png')} onPress={this._openMenu} />
                   }>
 
                   <Menu.Item onPress={() => {

@@ -73,7 +73,7 @@ export default class DialogReminderr extends Component {
         <TouchableOpacity onPress={this._showDatePicker}>
           <View style={{ margin: 4, flexDirection: 'row', alignSelf: 'center', backgroundColor: 'transparent', width: 200, borderWidth: 1, height: 40 }}>
             <Image style={{ height: 25, width: 30, margin: 5 }}
-              source={require('../Image/Calendar.png')} />
+              source={require('../Asserts/Calendar.png')} />
             <Text style={{ margin: 5, fontSize: 17 }}>{this.state.date}</Text>
             <DateTimePicker
               mode='date'
@@ -87,7 +87,7 @@ export default class DialogReminderr extends Component {
         <TouchableOpacity onPress={this._showTimePicker}>
           <View style={{ margin: 4, flexDirection: 'row', alignSelf: 'center', backgroundColor: 'transparent', width: 200, borderWidth: 1, height: 40 }}>
             <Image style={{ height: 25, width: 30, margin: 5 }}
-              source={require('../Image/Alarm1.png')} />
+              source={require('../Asserts/Alarm1.png')} />
             <Text style={{ margin: 5, fontSize: 17 }}>{this.state.setTime}</Text>
             <DateTimePicker
               mode='time'

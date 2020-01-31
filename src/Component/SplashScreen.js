@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Appbar } from 'react-native-paper';
-import { StyleSheet, Image, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, Image, Text,  } from 'react-native';
 import { View } from 'native-base';
 import { isSignedIn } from "./Authentication";
 import { getUserId } from '../Services/FireBaseDb'
@@ -11,7 +10,7 @@ export default class Notes extends React.Component {
     return (
 
       <View style={{ justifyContent: 'center', alignItems: 'center', top: 50, }}>
-        <Image source={require('../Image/Logo.png')}
+        <Image source={require('../Asserts/Logo.png')}
           style={{ width: "150%", height: 200, top: 10, tintColor: '#1e59c7' }}
           resizeMode='center'
         />

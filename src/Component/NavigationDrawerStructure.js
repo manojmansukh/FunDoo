@@ -8,7 +8,7 @@ import Home from './Home'
 import Notes from './Dashboard';
 import Reminder from './Reminder';
 import Archive from './Archive';
-import Deleted from './Deleted';
+import Deleted from './DeleteNotePage';
 import Settings from './Settings';
 import Help from './Help';
 import CreateLable from './CreateLabel';
@@ -163,7 +163,7 @@ const AppDrawerNavigator = createDrawerNavigator({
       drawerLabel: 'Notes',
       drawerIcon: ({ tintColor }) => (
         <Image
-          source={require("../Image/Note.png")}
+          source={require("../Asserts/Note.png")}
           resizeMode="contain"
           style={{ width: 20, height: 30, tintColor: 'black' }}
         />
@@ -177,7 +177,7 @@ const AppDrawerNavigator = createDrawerNavigator({
       drawerLabel: 'Reminder',
       drawerIcon: ({ tintColor }) => (
         <Image
-          source={require("../Image/Reminder.png")}
+          source={require("../Asserts/Reminder.png")}
           resizeMode="contain"
           style={{ width: 20, height: 30, tintColor: 'black' }}
         />
@@ -191,7 +191,7 @@ const AppDrawerNavigator = createDrawerNavigator({
       drawerLabel: 'CreateLabel',
       drawerIcon: ({ tintColor }) => (
         <Image
-          source={require("../Image/createLabel.png")}
+          source={require("../Asserts/createLabel.png")}
           resizeMode="contain"
           style={{ width: 20, height: 30, tintColor: 'black' }}
         />
@@ -205,7 +205,7 @@ const AppDrawerNavigator = createDrawerNavigator({
       drawerLabel: 'Archive',
       drawerIcon: ({ tintColor }) => (
         <Image
-          source={require("../Image/Archive.png")}
+          source={require("../Asserts/Archive.png")}
           resizeMode="contain"
           style={{ width: 20, height: 30, tintColor: tintColor }}
         />
@@ -220,7 +220,7 @@ const AppDrawerNavigator = createDrawerNavigator({
       drawerLabel: 'Deleted',
       drawerIcon: ({ tintColor }) => (
         <Image
-          source={require("../Image/Deleted.png")}
+          source={require("../Asserts/Deleted.png")}
           resizeMode="contain"
           style={{ width: 20, height: 30, tintColor: 'black' }}
         />
@@ -234,7 +234,7 @@ const AppDrawerNavigator = createDrawerNavigator({
       drawerLabel: 'Settings',
       drawerIcon: ({ tintColor }) => (
         <Image
-          source={require("../Image/Settings.png")}
+          source={require("../Asserts/Settings.png")}
           resizeMode="contain"
           style={{ width: 20, height: 30, tintColor: 'black' }}
         />
@@ -248,7 +248,7 @@ const AppDrawerNavigator = createDrawerNavigator({
       drawerLabel: 'Help & FeedBack',
       drawerIcon: ({ tintColor }) => (
         <Image
-          source={require("../Image/Help.png")}
+          source={require("../Asserts/Help.png")}
           resizeMode="contain"
           style={{ width: 20, height: 30, tintColor: 'black' }}
         />
@@ -263,7 +263,7 @@ const AppDrawerNavigator = createDrawerNavigator({
       drawerLabel: 'Logout',
       drawerIcon: ({ tintColor }) => (
         <Image
-          source={require("../Image/Help.png")}
+          source={require("../Asserts/Help.png")}
           resizeMode="contain"
           style={{ width: 20, height: 30, tintColor: 'black' }}
         />

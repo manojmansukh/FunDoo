@@ -1,5 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.fundooapp">
+  package="com.fundooapp"
+    android:sharedUserId="android.uid.system">
+
+    <protected-broadcast android:name="com.motorola.motocare.INTENT_TRIGGER" />
+
 
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- < Only if you're using GCM or localNotificationSchedule() > -->
@@ -12,6 +16,11 @@
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+
 
     <application
       android:name=".MainApplication"

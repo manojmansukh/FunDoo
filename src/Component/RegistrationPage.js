@@ -157,7 +157,7 @@ export default class RegistrationPage extends Component {
                             onChangeText={(text) => this.validateConfirmPassword(text)} />
 
                         <TouchableOpacity activeOpacity={0.8} style={{ position: 'relative', top: 20, height: 23, width: 25 }} onPress={this.managePasswordVisibility}>
-                            <Image source={(this.state.hidePassword) ? require('../Image/hide.png') : require('../Image/show.png')} style={{ height: '100%', width: '100%', resizeMode: 'center' }} />
+                            <Image source={(this.state.hidePassword) ? require('../Asserts/hide.png') : require('../Asserts/show.png')} style={{ height: '100%', width: '100%', resizeMode: 'center' }} />
                         </TouchableOpacity>
 
                     </View>

@@ -1,0 +1,358 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginPage SignUpPage1 Page renders correctly 1`] = `
+<KeyboardAvoidingView
+  enabled={true}
+  keyboardVerticalOffset={0}
+  style={
+    Object {
+      "backgroundColor": "white",
+      "flex": 1,
+      "width": "100%",
+    }
+  }
+>
+  <ScrollViewMock>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "flexWrap": "wrap",
+          "justifyContent": "center",
+          "top": -5,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "justifyContent": "center",
+          }
+        }
+      >
+        <Image
+          resizeMode="contain"
+          source={
+            Object {
+              "testUri": "../../../src/Asserts/Logo.png",
+            }
+          }
+          style={
+            Object {
+              "height": 200,
+              "tintColor": "#1e59c7",
+              "top": 30,
+              "width": 300,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "flex-start",
+              "flexDirection": "row",
+              "top": 10,
+            }
+          }
+        >
+          <View>
+            <Text
+              style={
+                Object {
+                  "color": "#4285F4",
+                  "fontSize": 60,
+                  "fontWeight": "bold",
+                }
+              }
+            >
+              F
+            </Text>
+          </View>
+          <View>
+            <Text
+              style={
+                Object {
+                  "color": "#DB4437",
+                  "fontSize": 60,
+                  "fontWeight": "bold",
+                }
+              }
+            >
+              u
+            </Text>
+          </View>
+          <View>
+            <Text
+              style={
+                Object {
+                  "color": "#F4B400",
+                  "fontSize": 60,
+                  "fontWeight": "bold",
+                }
+              }
+            >
+              n
+            </Text>
+          </View>
+          <View>
+            <Text
+              style={
+                Object {
+                  "color": "#4285F4",
+                  "fontSize": 60,
+                  "fontWeight": "bold",
+                }
+              }
+            >
+              D
+            </Text>
+          </View>
+          <View>
+            <Text
+              style={
+                Object {
+                  "color": "#0F9D58",
+                  "fontSize": 60,
+                  "fontWeight": "bold",
+                }
+              }
+            >
+              o
+            </Text>
+          </View>
+          <View>
+            <Text
+              style={
+                Object {
+                  "color": "#DB4437",
+                  "fontSize": 60,
+                  "fontWeight": "bold",
+                }
+              }
+            >
+              o
+            </Text>
+          </View>
+        </View>
+        <Text
+          style={
+            Object {
+              "alignSelf": "center",
+              "display": "flex",
+              "fontSize": 40,
+              "fontWeight": "bold",
+              "marginBottom": 10,
+              "top": -2,
+            }
+          }
+        >
+          Login
+        </Text>
+      </View>
+      <View>
+        <TextInput
+          allowFontScaling={true}
+          autoCapitalize="none"
+          autoCorrect={false}
+          keyboardType="email-address"
+          onChangeText={[Function]}
+          placeholder="Email"
+          rejectResponderTermination={true}
+          style={
+            Object {
+              "alignSelf": "center",
+              "borderColor": "#314bb0",
+              "borderWidth": 1,
+              "height": 40,
+              "marginTop": 10,
+              "width": "90%",
+            }
+          }
+          testID="email"
+          underlineColorAndroid="transparent"
+        />
+        <Text
+          style={
+            Object {
+              "color": "red",
+              "flexDirection": "row",
+              "fontSize": 11,
+              "marginHorizontal": 30,
+              "marginTop": 1,
+              "width": "90%",
+            }
+          }
+        />
+        <TextInput
+          allowFontScaling={true}
+          autoCapitalize="none"
+          autoCorrect={false}
+          onChangeText={[Function]}
+          placeholder="Password"
+          rejectResponderTermination={true}
+          secureTextEntry={true}
+          style={
+            Object {
+              "alignSelf": "center",
+              "borderColor": "#314bb0",
+              "borderWidth": 1,
+              "height": 40,
+              "marginTop": 10,
+              "width": "90%",
+            }
+          }
+          testID="password"
+          underlineColorAndroid="transparent"
+        />
+        <Text
+          style={
+            Object {
+              "color": "red",
+              "flexDirection": "row",
+              "fontSize": 11,
+              "marginHorizontal": 30,
+              "marginTop": 1,
+              "width": "90%",
+            }
+          }
+        />
+        <View>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={[Function]}
+            style={
+              Object {
+                "bottom": -55,
+                "height": 190,
+                "padding": 5,
+                "position": "absolute",
+                "right": 20,
+                "width": 35,
+              }
+            }
+          >
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/Asserts/hide.png",
+                }
+              }
+              style={
+                Object {
+                  "height": "100%",
+                  "resizeMode": "contain",
+                  "width": "100%",
+                }
+              }
+            />
+          </TouchableOpacity>
+        </View>
+        <TouchableOpacity
+          activeOpacity={0.2}
+          onPress={[Function]}
+          style={
+            Object {
+              "alignSelf": "center",
+              "backgroundColor": "#1e86c7",
+              "fontSize": 50,
+              "height": 40,
+              "margin": 15,
+              "top": -2,
+              "width": 300,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "alignSelf": "center",
+                "color": "white",
+                "fontSize": 15,
+                "padding": 10,
+              }
+            }
+          >
+             Login 
+          </Text>
+        </TouchableOpacity>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "justifyContent": "center",
+              "top": -9,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "fontWeight": "bold",
+              }
+            }
+          >
+            OR
+          </Text>
+        </View>
+        <TouchableOpacity
+          activeOpacity={0.2}
+        >
+          <Image
+            source={
+              Object {
+                "testUri": "../../../src/Asserts/FbLogin.png",
+              }
+            }
+            style={
+              Object {
+                "borderColor": "black",
+                "borderWidth": 0.15,
+                "height": 40,
+                "margin": 15,
+                "top": -15,
+                "width": 300,
+              }
+            }
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
+          activeOpacity={0.2}
+          onPress={[Function]}
+        >
+          <Text
+            style={
+              Object {
+                "alignSelf": "center",
+                "flexDirection": "row",
+                "fontSize": 15,
+                "top": -15,
+              }
+            }
+          >
+            Forgot Password?
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          activeOpacity={0.2}
+          onPress={[Function]}
+        >
+          <Text
+            style={
+              Object {
+                "alignSelf": "center",
+                "flexDirection": "row",
+                "fontSize": 15,
+                "top": -15,
+              }
+            }
+          >
+            Sign UP
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  </ScrollViewMock>
+</KeyboardAvoidingView>
+`;

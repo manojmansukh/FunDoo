@@ -184,8 +184,12 @@ android {
 
 dependencies {
     //implementation project(':react-native-touch-id')
+    implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha02'
     implementation project(':react-native-keychain')
     implementation project(':react-native-push-notification')
+    implementation project(':react-native-contacts')
+
     compile ('com.google.android.gms:play-services-gcm:11.2.0')
     compile project(':react-native-keychain')
 

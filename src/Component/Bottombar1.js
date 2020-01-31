@@ -8,16 +8,16 @@ export default class Bottombar1 extends Component {
       <Appbar style={{ borderWidth: .1, backgroundColor: 'white', width: '100%', justifyContent: 'space-between' }}>
 
         <View style={{ flexDirection: 'row', }}>
-          <Appbar.Action icon={require('../Image/tick.png')} />
-          <Appbar.Action icon={require('../Image/brush.png')} />
-          <Appbar.Action icon={require('../Image/miceicon.png')} />
+          <Appbar.Action icon={require('../Asserts/tick.png')} />
+          <Appbar.Action icon={require('../Asserts/brush.png')} />
+          <Appbar.Action icon={require('../Asserts/miceicon.png')} />
           {/* <Appbar.Action icon={require('../Image/imageicon.png')} /> */}
           <TouchableOpacity onPress={this.props.handleBrowserOpen}>
-            <Image source={require('../Image/Google2.png')}
+            <Image source={require('../Asserts/Google2.png')}
               style={{ height: 20, width: 20, margin: 9, top: 5 }} />
           </TouchableOpacity>
           <TouchableOpacity onPress={this.props.handleWhatsappOpen}>
-            <Image source={require('../Image/Whatsapp.jpeg')}
+            <Image source={require('../Asserts/Whatsapp.jpeg')}
               style={{ height: 30, width: 30, margin: 9, top: 0 }} />
           </TouchableOpacity>
         </View>
@@ -25,7 +25,7 @@ export default class Bottombar1 extends Component {
         <View style={{ fles: 1, backgroundColor: 'white' }}>
           <TouchableOpacity style={{ justifyContent: 'flex-end', alignItems: 'flex-end' }}
             onPress={this.props.handleNavigation}>
-            <Image style={{ height: "150%", bottom: 25, }} resizeMode="contain" source={require('../Image/addd.png')} />
+            <Image style={{ height: "150%", bottom: 25, }} resizeMode="contain" source={require('../Asserts/addd.png')} />
           </TouchableOpacity>
         </View>
 

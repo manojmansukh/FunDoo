@@ -3,7 +3,6 @@ import { StyleSheet, TextInput } from 'react-native';
 import { View } from 'native-base';
 import Appbar from './AppBar';
 import BottomBar from './BottomBar';
-import DialogReminder from './DialogReminder';
 import moment from 'moment';
 import PushNotification from "react-native-push-notification";
 import { styles } from '../CSS/EditeNotes.Style'
@@ -34,6 +33,8 @@ export default class EditeNotes extends React.Component {
   handleShowDialog = (status) => { this.setState({ dialogVisible: status }) }
 
   handleCloseDialog = (status, date, time, dateTime) => { this.setState({ dialogVisible: status, date: date, time: time, dateTime: dateTime }) }
+
+  handlePinStatus = (status) => { this.setState({ pin: status }) }
 
   handleDelete = () => {
     this.setState({ trash: true }, () => {
@@ -107,27 +108,7 @@ export default class EditeNotes extends React.Component {
           handleArchiveStatus={this.handleArchiveStatus}
           handleSave={this.handleSaveReminder}
         />
-        {/* <Appbar style={styles.top}>
-          <Appbar.Action icon={require('../Image/arrow_back.png')}
-            onPress={() => {
-              this.handleSaveNote()
-              this.props.navigation.navigate('Notes')
-            }
-            } />
-          <View style={{ flexDirection: 'row', flex: 1, alignSelf: 'flex-end', justifyContent: 'flex-end' }}>
-            <Appbar.Action icon={this.state.pin ? require('../Image/pin.png') : require('../Image/unpin.png')}
-              onPress={() => this.setState({ pin: !this.state.pin }, () => { console.log("manoj" + this.state.pin) })} />
-            <Appbar.Action icon={require('../Image/bell1.png')} onPress={this.showDialog} />
-            <Appbar.Action icon={this.state.archive ? require('../Image/Archive.png') : require('../Image/Unarchive.png')}
-              onPress={() => this.setState({ archive: !this.state.archive })} />
-            <Appbar.Action icon={require('../Image/Deleted.png')} onPress={() => this.handleDelete()} />
-          </View>
-
-          <DialogReminder dialogVisible={this.state.dialogVisible}
-            handleCancel={this.handleCancel}
-            handleSave={this.handleSaveReminder} />
-        </Appbar> */}
-
+  
         <View style={{ height: '84%', width: '100%', backgroundColor: this.state.bgColor }}>
           <TextInput multiline={true}
             style={styles.input}

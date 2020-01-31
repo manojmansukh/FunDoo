@@ -34,7 +34,7 @@ export default class AppBarSelectedNotes extends Component {
         return (
             <Appbar style={styles.top}>
 
-                <Appbar.Action icon={require('../Image/arrow_back.png')}
+                <Appbar.Action icon={require('../Asserts/arrow_back.png')}
                     onPress={() => {
                         this.setState({ selectionMode: false }, () => {
                             console.log(this.state.selectionMode);
@@ -45,20 +45,20 @@ export default class AppBarSelectedNotes extends Component {
                 <Provider>
                     <View style={{ flexDirection: 'row', flex: 1, justifyContent: 'flex-end' }}>
 
-                        <Appbar.Action icon={this.state.pin ? require('../Image/pin.png') : require('../Image/unpin.png')}
+                        <Appbar.Action icon={this.state.pin ? require('../Asserts/pin.png') : require('../Asserts/unpin.png')}
                             onPress={() => this.setState({ pin: !this.state.pin }, () => {
                                 this.props.handlePinStatus(this.state.pin)
                             })} />
-                        <Appbar.Action icon={require('../Image/bell1.png')}
+                        <Appbar.Action icon={require('../Asserts/bell1.png')}
                             onPress={this.showDialog} />
-                        <Appbar.Action icon={require('../Image/ColourBoard.png')}
+                        <Appbar.Action icon={require('../Asserts/ColourBoard.png')}
                             onPress={this.handleClick} />
                         {this.state.displayColorPicker ?
                             <ColorPalette
                                 colors={['#C0392B', '#E74C3C', '#9B59B6', '#8E44AD', '#2980B9']}
                                 title={"Controlled Color Palette:"}
                             /> : null}
-                        <Appbar.Action icon={require('../Image/Label.png')}
+                        <Appbar.Action icon={require('../Asserts/Label.png')}
                             onPress={() => { }} />
 
                         <Menu
@@ -66,7 +66,7 @@ export default class AppBarSelectedNotes extends Component {
                             onDismiss={this._closeMenu}
                             style={{ backgroundColor: 'pink', width: '50%' }}
                             anchor={
-                                <Appbar.Action icon={require('../Image/More.png')} onPress={this._openMenu} />
+                                <Appbar.Action icon={require('../Asserts/More.png')} onPress={this._openMenu} />
                             }>
 
                             <Menu.Item onPress={() => {

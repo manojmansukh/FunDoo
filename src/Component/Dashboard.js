@@ -1,5 +1,6 @@
 import * as React from 'react';
 import firebase from '../fireBase/Config';
+import DialogWhatsappMessage from './DialogWhatsappMessage'
 import axios from 'axios';
 import moment from 'moment';
 import { View } from 'native-base';
@@ -36,7 +37,9 @@ export default class Notes extends React.Component {
       date: '',
       time: '',
       nameList: '',
-      users: []
+      users: [],
+      dialogVisible: false,
+
     };
   }
 
@@ -214,9 +217,15 @@ export default class Notes extends React.Component {
       { cancelable: false },
     );
   }
+ 
+  handleCancel = () =>{
+    this.setState({ dialogVisible: false })
 
-  handleWhatsappOpen = () => {
-    Linking.openURL(`whatsapp://send?phone=${918605621964}&text=${"console.disableYellowBox = true;"}`);
+  }
+
+  handleWhatsAppOpen = () => {
+    this.setState({ dialogVisible: true })
+    //Linking.openURL(`whatsapp://send?phone=${918605621964}&text=${"console.disableYellowBox = true;"}`);
   }
 
   handleBrowserOpen = () => {
@@ -271,7 +280,7 @@ export default class Notes extends React.Component {
 
 
   componentWillUnmount() {
-   // this.notificationListener();
+    // this.notificationListener();
     //this.notificationOpenedListener();
   }
 
@@ -297,7 +306,7 @@ export default class Notes extends React.Component {
           <ScrollView>
             <View>
               {
-                this.state.pinData.length !== 0 ? <View><Text style={{ fontWeight: 'bold', marginLeft: 10, top: 5, bottom: 5, margin: 3 }}>PINNED</Text></View> : null
+                this.state.pinData.length !== 0 ? <View><Text style={{ fontSize: 12, marginLeft: 10, top: 5, bottom: 5, margin: 3 }}>PINNED</Text></View> : null
               }
               <FlatList
                 numColumns={this.state.numColumns} //toggle no of columns
@@ -324,7 +333,9 @@ export default class Notes extends React.Component {
                           this.showNotification(dateTime, note, title),
 
                           this.state.pinData[item].Date !== undefined && this.state.pinData[item].Time !== undefined ?
-                            <Chip icon={require('../Image/add_Alarm.png')} style={{ bottom: 0, width: 180, marginLeft: 6, }}>{this.state.pinData[item].Date}{'  '}{this.state.pinData[item].Time}</Chip>
+                            <Chip icon={require('../Asserts/add_Alarm.png')}
+                              style={{ bottom: 0, width: 180, marginLeft: 6, backgroundColor: 'transparent', borderColor: 'greay' }}>
+                              {this.state.pinData[item].Date}{'  '}{this.state.pinData[item].Time}</Chip>
                             : null
                         }
                       </View>
@@ -335,7 +346,7 @@ export default class Notes extends React.Component {
 
             </View>
             {
-              this.state.unPinData.length !== 0 ? <View><Text style={{ fontWeight: 'bold', marginLeft: 10, top: 3, margin: 3 }}>OTHERS</Text></View> : null
+              this.state.unPinData.length !== 0 ? <View><Text style={{ fontSize: 12, marginLeft: 10, top: 3, margin: 3 }}>OTHERS</Text></View> : null
             }
             <FlatList
               numColumns={this.state.numColumns} //toggle no of columns
@@ -358,7 +369,9 @@ export default class Notes extends React.Component {
                         title = this.state.unPinData[item].Title,
                         //this.showNotification(dateTime,note,title),
                         this.state.unPinData[item].Date !== undefined && this.state.unPinData[item].Time !== undefined ?
-                          <Chip icon={require('../Image/add_Alarm.png')} style={{ bottom: 0, width: 180, marginLeft: 6 }}>{this.state.unPinData[item].Date}{'  '}{this.state.unPinData[item].Time}</Chip>
+                          <Chip icon={require('../Asserts/add_Alarm.png')}
+                            style={{ bottom: 0, width: 180, marginLeft: 6, backgroundColor: 'transparent', borderColor: 'lightgreay' }}>
+                            {this.state.unPinData[item].Date}{'  '}{this.state.unPinData[item].Time}</Chip>
                           : null
                       }
                     </View>
@@ -372,8 +385,11 @@ export default class Notes extends React.Component {
 
         <Bottombar1 handleNavigation={this.handleNavigation}
           handleBrowserOpen={this.handleBrowserOpen}
-          handleWhatsappOpen={this.handleWhatsappOpengit}
+          handleWhatsappOpen={this.handleWhatsAppOpen}
         />
+        <DialogWhatsappMessage dialogVisible={this.state.dialogVisible}
+          handleCancel={this.handleCancel}
+          handleSave={this.handleSave} />
 
       </View>
     );

@@ -17,7 +17,7 @@ export default class Welcome extends Component {
             <View style={styles.innerView}>
                 <Image
                     style={{ width: '100%', height: '100%' }}
-                    source={require('../Image/fundoo6.jpg')} />
+                    source={require('../Asserts/fundoo6.jpg')} />
 
             </View>
         );

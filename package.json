@@ -21,10 +21,12 @@
     "moment": "^2.24.0",
     "native": "^0.3.3",
     "native-base": "^2.13.8",
-    "react": "16.9.0",
+    "react": "^16.12.0",
     "react-color": "^2.17.3",
+    "react-dom": "^16.12.0",
     "react-native": "0.61.5",
     "react-native-color-palette": "^2.2.0",
+    "react-native-contacts": "^5.0.7",
     "react-native-datepicker": "^1.7.2",
     "react-native-dialog": "^5.6.0",
     "react-native-elements": "^1.2.7",
@@ -65,13 +67,25 @@
     "@babel/runtime": "7.7.5",
     "@react-native-community/eslint-config": "0.0.5",
     "babel-jest": "24.9.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "6.7.2",
     "jest": "24.9.0",
+    "jest-environment-enzyme": "^7.1.2",
+    "jest-enzyme": "^7.1.2",
     "jetifier": "^1.6.5",
     "metro-react-native-babel-preset": "0.56.3",
     "react-test-renderer": "16.9.0"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "setupFilesAfterEnv": ["jest-enzyme"],
+    "testEnvironment": "enzyme",
+    "testEnvironmentOptions": {
+      "enzymeAdapter": "react16"
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@react-native-firebase/.*|react-native-firebase)"
+    ]
   }
 }

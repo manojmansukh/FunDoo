@@ -137,7 +137,7 @@ const Lock = (props) => {
                 <ReactNativePinView
                     inputSize={32}
                     ref={pinView}
-                    pinLength={5}
+                    pinLength={4}
                     buttonSize={60}
                     onValueChange={value => setEnteredPin(value)}
                     buttonAreaStyle={{

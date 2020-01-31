@@ -6,7 +6,7 @@ import { AsyncStorage } from "react-native";
 import { Chip } from 'react-native-paper';
 import { SearchBar } from 'react-native-elements';
 
-export default class Notes extends React.Component {
+export default class SearchNotes extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

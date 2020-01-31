@@ -28,11 +28,11 @@ export default class AppBar1 extends Component {
           <View style={{ width: '70%', backgroundColor: 'white', flexDirection: 'row' }}>
             <TouchableOpacity onPress={() => this.toggleDrawer()}>
               <Image
-                source={require('../Image/drawer.png')}
-                style={{ width: 25, height: 25, margin: 10, tintColor: 'black' }} />
+                source={require('../Asserts/drawer.png')}
+                style={{ width: 28, height: 28, margin: 10,  }} />
             </TouchableOpacity>
             <Text onPress={() => this.props.navigation.navigate('Search')}
-              style={{ fontWeight: '400', fontSize: 19, top: 9 }}>Search Your notes </Text>
+              style={{ fontWeight: '400', fontSize: 17, top: 12,marginLeft:8}}>Search Your notes </Text>
           </View>
 
           <View style={{ display: 'flex', flexDirection: 'row', width: '30%', backgroundColor: 'white', justifyContent: 'flex-end', justifyContent: 'flex-end' }}>
@@ -42,11 +42,11 @@ export default class AppBar1 extends Component {
                   this.props.handleListView(this.state.listView)
                 });
               }}>
-              <Image source={(this.state.listView) ? require('../Image/List4.png') : require('../Image/Grid2.png')}
-                style={{ top: 0, width: 25, height: 25, margin: 10 }} />
+              <Image source={(this.state.listView) ? require('../Asserts/List4.png') : require('../Asserts/Grid2.png')}
+                style={{ top: 0, width: 25, height: 25, margin: 10 ,tintColor:'grey'}} />
             </TouchableOpacity>
-            <Avatar.Text size={40}
-              style={{ backgroundColor: 'lightblue', marginRight: 5 }} label="M" />
+            <Avatar.Text size={35}
+              style={{ backgroundColor: 'lightblue', marginRight: 5 ,top:5}} label="M" />
           </View>
 
         </View>

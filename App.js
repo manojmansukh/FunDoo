@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import MainNavigator from './src/Component/MainNavigator';
-import Lock from './src/Component/Lock'
+import AppContainer from './src/Component/NavigationSwitch'
+import SendMessage from './src/Component/SendMessage'
 export default class App extends Component{
   render(){
     return(
-       // <Lock/>
-         <MainNavigator/>
+       //<SendMessage/>
+          <AppContainer/>
          
     );
   }  

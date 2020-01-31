@@ -31,7 +31,7 @@ export default class BottomBar extends Component {
     return (
       <Provider>
         <Appbar.Header style={{ backgroundColor: 'white', justifyContent: 'space-between' }}>
-          <Appbar.Action icon={require('../Image/AddBox.png')} style={{}} onPress={this._handleMore} />
+          <Appbar.Action icon={require('../Asserts/AddBox.png')} style={{}} onPress={this._handleMore} />
           <Text>Edited {this.state.currentTime}</Text>
           <Menu
             visible={this.state.visible}
@@ -39,15 +39,15 @@ export default class BottomBar extends Component {
             style={{ width: '97%' }}
             anchor={
               <Appbar.Action icon="dots-vertical" onPress={this._openMenu} />}>
-            <Menu.Item icon={require('../Image/Deleted.png')}
+            <Menu.Item icon={require('../Asserts/Deleted.png')}
               onPress={() => { console.log("item1"); }} title="Delete" />
-            <Menu.Item icon={require('../Image/Copy.png')}
+            <Menu.Item icon={require('../Asserts/Copy.png')}
               onPress={() => { console.log("item2"); }} title="Make a Copy" />
-            <Menu.Item icon={require('../Image/Send.png')}
+            <Menu.Item icon={require('../Asserts/Send.png')}
               onPress={() => { console.log("item3"); }} title="Send" />
-            <Menu.Item icon={require('../Image/Collaborator.png')}
+            <Menu.Item icon={require('../Asserts/Collaborator.png')}
               onPress={() => { console.log("item3"); }} title="Collaborator" />
-            <Menu.Item icon={require('../Image/Label.png')}
+            <Menu.Item icon={require('../Asserts/Label.png')}
               onPress={() => { console.log("item3"); }} title="Labels" />
             <ColorPalette
               title=''
