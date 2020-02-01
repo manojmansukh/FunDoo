@@ -35,6 +35,7 @@ export default class Login extends Component {
       //email correct
       this.setState({ email: text })
       this.setState({ emailError: null });
+      return true;
     }
   }
 
@@ -69,21 +70,21 @@ export default class Login extends Component {
       });
   }
 
-  // async hadleFaceBookLogin =() => {
-  //   try {
-  //     let result = await LoginManager.logInWithPermissions([public_profile])
-  //     if (result.isCancelled) {
-  //       alert('loin was cancelled');
-  //     }
-  //     else{
-  //       alert('Login with successful with permissdion :' 
-  //       +result.grantedPermissions.toString());
-  //     }
+  hadleFaceBookLogin = async() => {
+    try {
+      let result = await LoginManager.logInWithPermissions([public_profile])
+      if (result.isCancelled) {
+        alert('loin was cancelled');
+      }
+      else{
+        alert('Login with successful with permissdion :' 
+        +result.grantedPermissions.toString());
+      }
 
-  //   } catch (error) {
-  //     alert('login failed with error'+error)
-  //   }
-  // }
+    } catch (error) {
+      alert('login failed with error'+error)
+    }
+  }
   
   render() {
     return (
@@ -130,7 +131,7 @@ export default class Login extends Component {
                 autoCorrect={false}
                 secureTextEntry={this.state.hidePassword}
                 onChangeText={(password) => this.setState({ password })}
-                onChangeText={(text) => this.validatePass(text)} />
+                onChangeText={(text) => this.validatePass(text)} /> 
               <Text style={styles.error}>{this.state.passError}</Text>
 
               <View>

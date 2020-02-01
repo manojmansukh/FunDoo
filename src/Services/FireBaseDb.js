@@ -3,23 +3,14 @@ import firebase from '../fireBase/Config'
 import { AsyncStorage } from "react-native";
 var uid ;
 
-
 export function getUserId() {
-    console.log('<<<<<<<<<<<<<<<<<mjjj');
     AsyncStorage.getItem("UserId").then((value) => {
-        console.log('MMM',value);
-        uid = value
-        console.log(uid);
-        
+        uid = value        
     })
 }
 
 export function removeUserId() {
-    console.log('<<<<<<<<<<<<<<<<<mjjj');
-    console.log('<<<<<<<<<<<',uid);
-     uid=''
-     console.log('<<<<<<<<<<<',uid);
-     
+     uid=''     
 }
 
 export function getUserName(callback) {
@@ -31,7 +22,6 @@ export function getUserName(callback) {
 
 export function getNotes(callback) {
     const ref = firebase.database().ref('/users/' + uid + '/Notes/')    .orderByChild('Trash').equalTo(false)
-
     ref.on('value',(snapshot) => {
         callback(snapshot.val())
     })
@@ -51,9 +41,7 @@ export function saveNote(title,note,date,time,pin,bgColor){
         })
 }
 
-export function editNote(currentNoteId,title,note,pin, archive, trash, bgColor){
-    console.log('MMMMMMMMMMMMM',title);
-    
+export function editNote(currentNoteId,title,note,pin, archive, trash, bgColor){    
     firebase.database().ref('/users/' + uid + '/Notes/' + currentNoteId).update({
         Title: title,
         Note: note,
@@ -84,9 +72,7 @@ export function setArchive(currentNoteId,archive){
         })
 }
 
-export function moveToTrash(currentNoteId,trash){
-    console.log('mmmmmmmmmm',trash,currentNoteId);
-    
+export function moveToTrash(currentNoteId,trash){    
     firebase.database().ref('/users/' + uid + '/Notes/' + currentNoteId).update({
         Trash: trash,
       })

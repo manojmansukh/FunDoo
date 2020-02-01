@@ -1,10 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.fundooapp"
-    android:sharedUserId="android.uid.system">
-
-    <protected-broadcast android:name="com.motorola.motocare.INTENT_TRIGGER" />
-
-
+  package="com.fundooapp">
+    
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- < Only if you're using GCM or localNotificationSchedule() > -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />

@@ -14,7 +14,7 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.facebook.soloader.SoLoader;
-
+//import com.facebook.facebookSdk;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
