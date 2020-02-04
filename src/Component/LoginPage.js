@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { View, TouchableOpacity, Text, Image, KeyboardAvoidingView, ScrollView, StyleSheet, TextInput } from "react-native";
-import firebase from '../fireBase/Config';
+// import firebase from '../fireBase/Config';
 import { onSignIn } from "./Authentication";
 import { SetCurrentUser } from "./Authentication";
 import { AsyncStorage } from "react-native";
-import { LoginManager } from 'react-native-fbsdk';
 import { getUserId } from '../Services/FireBaseDb'
 import { styles } from '../CSS/LoginPage.Style';
+import { LoginButton, AccessToken, GraphRequest, GraphRequestManager, LoginManager } from 'react-native-fbsdk';
+import firebase from 'react-native-firebase'
 
 export default class Login extends Component {
   constructor(props) {
@@ -18,6 +19,10 @@ export default class Login extends Component {
       passError: null,
       showPassword: true,
       hidePassword: true,
+      user_name: '',
+      fbId:'',
+      avatar_url: '',
+      avatar_show: false,
     }
   }
 
@@ -53,13 +58,39 @@ export default class Login extends Component {
     }
   }
 
+  _responseInfoCallback = (error, result) => {
+    if (error) {
+      console.log('Error fetching data: ' + error);
+    } else {
+      this.setState({ user_name: result.name, fbId: result.id}, ()=>{
+        console.log('Success fetching datall: ', result);
+      })
+      AccessToken.getCurrentAccessToken().then(data => {
+        console.log(data.accessToken.toString());
+      })
+    }
+   
+  }
+
+  userDetails = () => { 
+    console.log("details")
+    // Create a graph request asking for user information with a callback to handle the response.
+    const infoRequest = new GraphRequest(
+      '/me?fields=name,email',
+      null,
+      this._responseInfoCallback,
+    );
+    // Start the graph request.
+    new GraphRequestManager().addRequest(infoRequest).start();
+  }
+
   handleLogin = () => {
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
         onSignIn();
         AsyncStorage.setItem("UserId", firebase.auth().currentUser.uid).then(getUserId())
-        this.props.navigation.navigate('Lock')
-        //this.props.navigation.navigate('Drawer')
+        //this.props.navigation.navigate('Lock')
+        this.props.navigation.navigate('Drawer')
 
       })
       .catch((error) => {
@@ -71,20 +102,33 @@ export default class Login extends Component {
   }
 
   hadleFaceBookLogin = async() => {
+    console.log("fb login");
+    
+    //await this.get_Response_Info();
     try {
-      let result = await LoginManager.logInWithPermissions([public_profile])
+      let result = await LoginManager.logInWithPermissions(['public_profile'])
       if (result.isCancelled) {
         alert('loin was cancelled');
       }
       else{
-        alert('Login with successful with permissdion :' 
-        +result.grantedPermissions.toString());
+        this.userDetails();
+        //this.props.navigation.navigate('Drawer')
       }
 
     } catch (error) {
+      console.log(error);
       alert('login failed with error'+error)
     }
   }
+
+
+  onLogout = () => {
+
+    this.setState({ user_name: null, avatar_url: null, avatar_show: false });
+
+  }
+
+
   
   render() {
     return (
@@ -153,9 +197,46 @@ export default class Login extends Component {
               <TouchableOpacity
                 // style={styles.fbButton}
                 onPress={this.hadleFaceBookLogin}>
+                {/* onPress={this.facebookLogin}> */}
                 <Image source={require('../Asserts/FbLogin.png')}
                   style={{ height: 40, width: 300, margin: 15, borderColor: 'black', borderWidth: .15, top: -15 }} />
               </TouchableOpacity>
+
+              {/* <View style={styles.container}>
+                {this.state.avatar_url ?
+                  <Image
+                    source={{ uri: this.state.avatar_url }}
+                    style={styles.imageStyle} /> : null}
+
+                <Text style={styles.text}> {this.state.user_name} </Text>
+
+                <LoginButton
+                  readPermissions={['public_profile']}
+                  onLoginFinished={(error, result) => {
+                    if (error) {
+                      console.log(error.message);
+                      console.log('login has error: ' + result.error);
+                    } else if (result.isCancelled) {
+                      console.log('login is cancelled.');
+                    } else {
+                      AccessToken.getCurrentAccessToken().then(data => {
+                        console.log(data.accessToken.toString());
+
+                        const processRequest = new GraphRequest(
+                          '/me?fields=name,picture.type(large)',
+                          null,
+                          this.get_Response_Info
+                        );
+                        // Start the graph request.
+                        new GraphRequestManager().addRequest(processRequest).start();
+
+                      });
+                    }
+                  }}
+                  onLogoutFinished={this.onLogout}
+                />
+
+              </View> */}
 
               <TouchableOpacity onPress={() => { this.props.navigation.navigate('ForgotPass') }}>
                 <Text style={styles.text}>

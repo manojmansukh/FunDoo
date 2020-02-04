@@ -42,8 +42,8 @@ export default class Notes extends React.Component {
       isSignedIn()
         .then(res => {
           if (res == true) {
-            this.props.navigation.navigate('Lock')
-            //this.props.navigation.navigate('Drawer')
+            //this.props.navigation.navigate('Lock')
+            this.props.navigation.navigate('Drawer')
           }
           else {
             this.props.navigation.navigate('SignIn')

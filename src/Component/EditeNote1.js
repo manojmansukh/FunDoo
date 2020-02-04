@@ -10,7 +10,6 @@ import ColorPalette from 'react-native-color-palette'
 //import { editNote, setReminder, moveToTrash } from '../Services/FireBaseDb'
  import { editNote, setReminder, moveToTrash } from '../Services/AxiosDb'
 
-
 export default class EditeNotes extends React.Component {
 
   constructor(props) {

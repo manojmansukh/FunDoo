@@ -95,7 +95,8 @@ export default class RegistrationPage extends Component {
                     lastNamae: this.state.lastName,
                     email: this.state.email,
                     password: this.state.password,
-                    Confirmpassword: this.state.Confirmpassword
+                    Confirmpassword: this.state.Confirmpassword,
+                    ProfileImage:''
                 })
                 alert("Registration Complete Succesfully...!")
                 this.props.navigation.navigate('SignIn')

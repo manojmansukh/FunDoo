@@ -31,8 +31,6 @@ export default class Notes extends React.Component {
 
   _closeMenu = () => this.setState({ visible: false });
 
-  toggleDrawer() { this.props.navigation.toggleDrawer() };
-
   GridView = () => { this.setState({ ListView: !this.state.ListView }); }
 
   handleSelectionMode = (mode) => {
@@ -144,7 +142,7 @@ export default class Notes extends React.Component {
         <Appbar style={{ backgroundColor: 'white' }} >
           <View style={{ flexDirection: 'row', width: '100%' }}>
 
-            <TouchableOpacity onPress={() => this.toggleDrawer()}>
+            <TouchableOpacity onPress={this.props.navigation.toggleDrawer()}>
               <Image source={require('../Asserts/drawer.png')}
                 style={{ width: 25, height: 25, margin: 10, tintColor: 'black' }} />
             </TouchableOpacity>

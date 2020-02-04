@@ -13,17 +13,24 @@ export function removeUserId() {
      uid=''     
 }
 
-export function getUserName(callback) {
+export function getUserDetails(callback) {
     const ref = firebase.database().ref('/users/' + uid + '/personal/')
-    ref.on('value', (snapshot) => {        
+    ref.on('value', (snapshot) => {
         callback(snapshot.val())
     })
 }
 
 export function getNotes(callback) {
-    const ref = firebase.database().ref('/users/' + uid + '/Notes/')    .orderByChild('Trash').equalTo(false)
+    const ref = firebase.database().ref('/users/' + uid + '/Notes/').orderByChild('Trash').equalTo(false)
     ref.on('value',(snapshot) => {
         callback(snapshot.val())
+    })
+}
+
+export function storeProfileImage(imgSource) {
+    const uid = firebase.auth().currentUser.uid
+    firebase.database().ref('/users/' + uid + '/personal/').update({
+        ProfileImage: imgSource
     })
 }
 

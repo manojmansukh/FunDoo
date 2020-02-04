@@ -1,6 +1,7 @@
 import * as React from 'react';
 import firebase from '../fireBase/Config';
 import DialogWhatsappMessage from './DialogWhatsappMessage'
+import DialogProfile from './Profile'
 import axios from 'axios';
 import moment from 'moment';
 import { View } from 'native-base';
@@ -39,6 +40,7 @@ export default class Notes extends React.Component {
       nameList: '',
       users: [],
       dialogVisible: false,
+      profileVisible: false,
 
     };
   }
@@ -219,7 +221,7 @@ export default class Notes extends React.Component {
   }
  
   handleCancel = () =>{
-    this.setState({ dialogVisible: false })
+    this.setState({ dialogVisible: false, profileVisible: false  })
 
   }
 
@@ -232,6 +234,10 @@ export default class Notes extends React.Component {
     Linking.openURL(URL).catch((err) => console.error('An error occurred', err));
   }
 
+  handleProfileSet =() =>{
+    this.setState({ profileVisible: true })
+
+  }
   async componentDidMount() {
     //this.checkPermission();
     //this.createNotificationListeners();
@@ -298,7 +304,11 @@ export default class Notes extends React.Component {
                 handlePermantDelete={this.handlePermantDelete}
                 handleTrash={this.handleTrash}
               />
-              : <AppBar1 navigation={this.props.navigation} handleListView={this.handleListView} />
+              : <AppBar1 navigation={this.props.navigation}
+               handleListView={this.handleListView} 
+                //handleProfileSet={this.handleProfileSet}
+                handleCancel={this.handleCancel}
+               />
 
           }
         </View>
@@ -390,6 +400,10 @@ export default class Notes extends React.Component {
         <DialogWhatsappMessage dialogVisible={this.state.dialogVisible}
           handleCancel={this.handleCancel}
           handleSave={this.handleSave} />
+
+        {/* <DialogProfile dialogVisible={this.state.profileVisible}
+          handleCancel={this.handleCancel}
+          handleSave={this.handleSave} /> */}
 
       </View>
     );

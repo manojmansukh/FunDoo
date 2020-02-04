@@ -2,25 +2,20 @@ package com.fundooapp;
 
 import android.app.Application;
 import android.content.Context;
-import com.rt2zz.reactnativecontacts.ReactNativeContacts; // <--- import
-import com.fundooapp.CustomToastPackage;
+
 import com.facebook.CallbackManager;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
-//import com.rnfingerprint.FingerprintAuthPackage;
-import com.oblador.keychain.KeychainPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
-import com.facebook.react.shell.MainReactPackage;
-import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.facebook.soloader.SoLoader;
-//import com.facebook.facebookSdk;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
-import io.invertase.firebase.RNFirebasePackage;
-import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
 import io.invertase.firebase.notifications.RNFirebaseNotificationsPackage;
+
+//import com.rnfingerprint.FingerprintAuthPackage;
 
 //import io.invertase.firebase.RNFirebasePackage;
 //FaceBook Login
@@ -41,6 +36,7 @@ public class MainApplication extends Application implements ReactApplication {
           @SuppressWarnings("UnnecessaryLocalVariable")
           List<ReactPackage> packages = new PackageList(this).getPackages();
             //packages.add(new MainReactPackage(),
+            //new ImagePickerPackage(),
             //new FingerprintAuthPackage(),
            // packages.add(new KeychainPackage());
             packages.add(new RNFirebaseNotificationsPackage());

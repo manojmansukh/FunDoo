@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react"
 import { ImageBackground, SafeAreaView, StatusBar, Text, StyleSheet, TouchableHighlight, View } from "react-native"
 import ReactNativePinView from "react-native-pin-view"
 import * as Keychain from 'react-native-keychain';
-import { getUserName } from '../Services/FireBaseDb';
+import { getUserDetails } from '../Services/FireBaseDb';
 import { styles } from '../CSS/Lock.Style'
 import { AsyncStorage } from "react-native";
 import fundoo from './Fundoo'
@@ -36,7 +36,7 @@ const Lock = (props) => {
     // },[])
     useEffect(() => {
         console.log('hiiiii');
-        getUserName((snapshotValue) => {
+        getUserDetails((snapshotValue) => {
             console.log("mjjjj", state.username)
             console.log(snapshotValue.firstName)
             var userName = snapshotValue.firstName + snapshotValue.lastNamae

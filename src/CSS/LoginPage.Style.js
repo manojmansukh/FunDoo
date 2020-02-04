@@ -80,5 +80,26 @@ export var styles = StyleSheet.create({
         resizeMode: 'contain',
         height: '100%',
         width: '100%'
+    },
+    container: {
+        //flex: 1,
+        top:-10,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+    },
+
+    // text: {
+    //     fontSize: 20,
+    //     color: '#000',
+    //     textAlign: 'center',
+    //     padding: 0
+    // },
+
+    imageStyle: {
+
+        width: 300,
+        height: 300,
+        resizeMode: 'contain'
+
     }
 });
