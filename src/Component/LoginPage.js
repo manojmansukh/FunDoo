@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { View, TouchableOpacity, Text, Image, KeyboardAvoidingView, ScrollView, StyleSheet, TextInput } from "react-native";
-// import firebase from '../fireBase/Config';
+import firebase from '../fireBase/Config';
 import { onSignIn } from "./Authentication";
 import { SetCurrentUser } from "./Authentication";
 import { AsyncStorage } from "react-native";
 import { getUserId } from '../Services/FireBaseDb'
 import { styles } from '../CSS/LoginPage.Style';
 import { LoginButton, AccessToken, GraphRequest, GraphRequestManager, LoginManager } from 'react-native-fbsdk';
-import firebase from 'react-native-firebase'
+//import firebase from 'react-native-firebase'
 
 export default class Login extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ export default class Login extends Component {
       showPassword: true,
       hidePassword: true,
       user_name: '',
-      fbId:'',
+      fbId: '',
       avatar_url: '',
       avatar_show: false,
     }
@@ -58,21 +58,25 @@ export default class Login extends Component {
     }
   }
 
-  _responseInfoCallback = (error, result) => {
-    if (error) {
-      console.log('Error fetching data: ' + error);
-    } else {
-      this.setState({ user_name: result.name, fbId: result.id}, ()=>{
-        console.log('Success fetching datall: ', result);
-      })
-      AccessToken.getCurrentAccessToken().then(data => {
-        console.log(data.accessToken.toString());
-      })
-    }
+  hadleFaceBookLogin = async () => {
    
+    try {
+      let result = await LoginManager.logInWithPermissions(['public_profile'])
+      if (result.isCancelled) {
+        alert('loin was cancelled');
+      }
+      else {
+        this.userDetails();
+        //this.props.navigation.navigate('Drawer')
+      }
+
+    } catch (error) {
+      console.log(error);
+      alert('login failed with error' + error)
+    }
   }
 
-  userDetails = () => { 
+  userDetails = () => {
     console.log("details")
     // Create a graph request asking for user information with a callback to handle the response.
     const infoRequest = new GraphRequest(
@@ -84,6 +88,48 @@ export default class Login extends Component {
     new GraphRequestManager().addRequest(infoRequest).start();
   }
 
+  _responseInfoCallback = (error, result) => {
+
+    if (error) {
+      console.log('Error fetching data: ' + error);
+    } else {
+
+      this.setState({ user_name: result.name, fbId: result.id, email: result.email }, () => {
+        // console.log('Success fetching datall: ', result);
+      })
+
+      AccessToken.getCurrentAccessToken()
+        .then((data) => {
+          const credential = firebase.auth.FacebookAuthProvider.credential(data.accessToken);
+          console.log("cre", credential);
+          firebase.auth().signInWithCredential(credential)
+            // .then(loginUserSuccess(dispatch))
+            .then((success) => {
+              this.registerFbUser(success.user.uid)
+            })
+            .catch(function (error) {
+              var errorCode = error.code;
+              var errorMessage = error.errorMessage;
+              console.log('Error code :' + errorCode);
+              console.log('Error Msg :' + errorMessage);
+            });
+        });
+    }
+  }
+
+  registerFbUser = (uid) => {
+    firebase.database().ref('/users/' + uid + '/personal').set({
+      firstName: this.state.user_name,
+      email: this.state.email,
+      fbId: this.state.fbId
+    })
+    onSignIn();
+    //getUserId();
+    AsyncStorage.setItem("UserId",uid).then(getUserId())
+    this.props.navigation.navigate('Drawer')
+   }
+
+   //email Login
   handleLogin = () => {
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
@@ -97,39 +143,10 @@ export default class Login extends Component {
         alert("Enter the valid Details...!", error)
         var errorCode = error.code;
         var errorMessage = error.errorMessage;
-      
+
       });
   }
 
-  hadleFaceBookLogin = async() => {
-    console.log("fb login");
-    
-    //await this.get_Response_Info();
-    try {
-      let result = await LoginManager.logInWithPermissions(['public_profile'])
-      if (result.isCancelled) {
-        alert('loin was cancelled');
-      }
-      else{
-        this.userDetails();
-        //this.props.navigation.navigate('Drawer')
-      }
-
-    } catch (error) {
-      console.log(error);
-      alert('login failed with error'+error)
-    }
-  }
-
-
-  onLogout = () => {
-
-    this.setState({ user_name: null, avatar_url: null, avatar_show: false });
-
-  }
-
-
-  
   render() {
     return (
 
@@ -175,7 +192,7 @@ export default class Login extends Component {
                 autoCorrect={false}
                 secureTextEntry={this.state.hidePassword}
                 onChangeText={(password) => this.setState({ password })}
-                onChangeText={(text) => this.validatePass(text)} /> 
+                onChangeText={(text) => this.validatePass(text)} />
               <Text style={styles.error}>{this.state.passError}</Text>
 
               <View>
@@ -201,42 +218,6 @@ export default class Login extends Component {
                 <Image source={require('../Asserts/FbLogin.png')}
                   style={{ height: 40, width: 300, margin: 15, borderColor: 'black', borderWidth: .15, top: -15 }} />
               </TouchableOpacity>
-
-              {/* <View style={styles.container}>
-                {this.state.avatar_url ?
-                  <Image
-                    source={{ uri: this.state.avatar_url }}
-                    style={styles.imageStyle} /> : null}
-
-                <Text style={styles.text}> {this.state.user_name} </Text>
-
-                <LoginButton
-                  readPermissions={['public_profile']}
-                  onLoginFinished={(error, result) => {
-                    if (error) {
-                      console.log(error.message);
-                      console.log('login has error: ' + result.error);
-                    } else if (result.isCancelled) {
-                      console.log('login is cancelled.');
-                    } else {
-                      AccessToken.getCurrentAccessToken().then(data => {
-                        console.log(data.accessToken.toString());
-
-                        const processRequest = new GraphRequest(
-                          '/me?fields=name,picture.type(large)',
-                          null,
-                          this.get_Response_Info
-                        );
-                        // Start the graph request.
-                        new GraphRequestManager().addRequest(processRequest).start();
-
-                      });
-                    }
-                  }}
-                  onLogoutFinished={this.onLogout}
-                />
-
-              </View> */}
 
               <TouchableOpacity onPress={() => { this.props.navigation.navigate('ForgotPass') }}>
                 <Text style={styles.text}>

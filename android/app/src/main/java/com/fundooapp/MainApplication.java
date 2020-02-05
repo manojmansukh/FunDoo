@@ -14,10 +14,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import io.invertase.firebase.notifications.RNFirebaseNotificationsPackage;
-
 //import com.rnfingerprint.FingerprintAuthPackage;
-
-//import io.invertase.firebase.RNFirebasePackage;
 //FaceBook Login
 
 public class MainApplication extends Application implements ReactApplication {
@@ -36,13 +33,15 @@ public class MainApplication extends Application implements ReactApplication {
           @SuppressWarnings("UnnecessaryLocalVariable")
           List<ReactPackage> packages = new PackageList(this).getPackages();
             //packages.add(new MainReactPackage(),
+           // new RNSendIntentPackage(),
             //new ImagePickerPackage(),
             //new FingerprintAuthPackage(),
            // packages.add(new KeychainPackage());
             packages.add(new RNFirebaseNotificationsPackage());
             packages.add(new CustomToastPackage());
+//            packages.add(new RNSendIntentPackage());
             //packages.add(new ReactNativeContacts());
-            //packages.add(new RNFirebasePackage());
+            //packages.add(new RNFirebaseAuthPackage());
             //packages.add(new FBSDKPackage(mCallbackManager));
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());

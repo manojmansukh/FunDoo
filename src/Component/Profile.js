@@ -10,7 +10,7 @@
 //     this.state = {
 //      visible:false,
 //      image:null,
-     
+
 //     };
 //   }
 
@@ -27,7 +27,7 @@
 //         {/* <View style={{top:-40,height:230}}> */}
 //           <Logout />
 //         {/* </View> */}
-     
+
 //       </Dialog.Container>
 
 //     );
@@ -59,25 +59,30 @@ import ImagePicker from 'react-native-image-picker'
 import * as Permissions from './AndroidPermission'
 //import { storeProfileImage } from '../Services/FireBaseDb'
 import { Title, Paragraph } from 'react-native-paper';
+import { onSignOut } from "./Authentication";
+import { storeProfileImage } from '../Services/FireBaseDb'
+
 
 const options = {
   title: 'Select Avatar',
   storageOptions: {
     skipBackup: true,
-    noData: true
+    noData: true,
+
   },
 };
 
 export default class Profile extends Component {
   constructor(props) {
     super(props);
-    console.log("in profile cons");
-    
+
     this.state = {
       visible: false,
       image: null,
-     userObj: null,
-      ProfileImage: null,
+      userObj: null,
+      firstName:'',
+      lastNamae:'',
+      ProfileImage: null
     };
   }
 
@@ -119,36 +124,31 @@ export default class Profile extends Component {
     return colorArray[random];
   }
 
-  componentDidMount = () => {
-    getUserDetails( async (snap) => {
-      console.log(snap);
-      
-      this.setState({
-        userObj: snap
+  componentDidMount = async () => {
+    getUserDetails(async (snap) => {
+      console.log("mj....", snap.ProfileImage);
+
+      await this.setState({
+        userObj: snap,
+        firstName: snap.firstName,
+        lastNamae: snap.lastNamae,
+        ProfileImage: snap.ProfileImage
       })
     })
   }
 
   render() {
-console.log("mj",this.state.userObj);
+    console.log("mj", this.state.firstName);
 
     return (
       <>
 
-
         <Avatar
-          type={this.state.userObj === null || this.state.userObj.ProfileImage === undefined ? "text" : 'image'}
-          content={this.state.userObj !== null && (this.state.userObj.firstName).charAt(0)}
-          contentColor={'white'}
+          type={'image'}
           size={35}
-          //color={'#eb4949'}
-          color={this.randomColor()}
-          //size={35}
-          //image={this.state.userObj.ProfileImage !== undefined  && <Image source={{ uri: this.state.userObj }} />}
-           onPress={() => this.setState({ visible: !this.state.visible })}
+          image={<Image source={{ uri: this.state.ProfileImage }} />}
+          onPress={() => this.setState({ visible: !this.state.visible })}
         />
-
-
         <Dialog
           visible={this.state.visible}
           onTouchOutside={() => this.setState({ visible: false })}
@@ -159,29 +159,30 @@ console.log("mj",this.state.userObj);
             }
           }
         >
-          {/* <Avatar
-            type={this.state.avtarSrc === null || this.state.userObj.ProfileImage === undefined ? "text" : 'image'}
-            content={this.state.userObj !== null && (this.state.userObj.FirstName).charAt(0)}
+          <Avatar
+            type={this.state.userObj === null || this.state.userObj.ProfileImage === undefined ? "text" : 'image'}
+            content={this.state.userObj !== null && (this.state.userObj.firstName).charAt(0)}
             contentColor={'white'}
             size={100}
-            // color={this.randomColor()}
-            image={this.state.userObj.ProfileImage !== undefined && <Image source={{ uri: this.state.userObj.ProfileImage }} />}
+            color={this.randomColor()}
+            image={this.state.ProfileImage !== null && <Image source={{ uri: this.state.userObj.ProfileImage }} />}
             style={
               {
                 alignSelf: 'center',
               }
             }
             onPress={this.uploadProfileImage}
-          /> */}
+          />
 
           {
             this.state.userObj !== null &&
             <View style={{ alignItems: 'center' }}>
               <Title>
-                {this.state.userObj.firstName + ' ' + this.state.userObj.lastNamae}
+                {this.state.userObj.lastNamae !== undefined ?
+                  this.state.userObj.firstName + ' ' + this.state.userObj.lastNamae : this.state.userObj.firstName}
               </Title>
               <Paragraph>
-                {this.state.userObj.EmailId}
+                {this.state.userObj.email}
               </Paragraph>
             </View>
           }
@@ -199,13 +200,9 @@ console.log("mj",this.state.userObj);
             />
             <Button
               text={'Sign out'}
-              onPress={() => {
-                signOut(async () => {
-                 // console.log(await AsyncStorage.getItem('isAuth'))
-                  //await AsyncStorage.clear()
-                  //this.props.navigation.navigate('SignIn')
-                })
-              }}
+              onPress={() => onSignOut().then(() =>
+                this.setState({ visible: false }),
+                this.props.navigation.navigate('SignIn'))}
             />
           </View>
         </Dialog>

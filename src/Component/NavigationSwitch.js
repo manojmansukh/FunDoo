@@ -5,7 +5,7 @@ import Lock from './Lock'
 import NavigationStack from './NavigationStack'
 
 const AppNavigator = createSwitchNavigator({
-    Splash: SplashScreen,
+    SplashScreen: SplashScreen,
     Lock: Lock,
     NavigationStack: NavigationStack,
 });

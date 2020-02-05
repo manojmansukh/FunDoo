@@ -13,11 +13,12 @@ import PushNotification from "react-native-push-notification";
 import Bottombar1 from './Bottombar1';
 import { styles } from '../CSS/Dashboard.Style'
 import { FlatList, Text, ScrollView, TouchableOpacity, Linking } from 'react-native';
-import { getNotes, setPin, setArchive, setTrash, PermanentDelete } from '../Services/FireBaseDb';
+import { getNotes, setPin, setArchive, setTrash, PermanentDelete ,getUserId} from '../Services/FireBaseDb';
 //import { getNotes, setPin, setArchive, setTrash, } from '../Services/AxiosDb';
 
 var dateTime, note, title, systemTime;
 const URL = "https://www.google.com/"
+var SendIntentAndroid = require("react-native-send-intent");
 
 export default class Notes extends React.Component {
   constructor(props) {
@@ -231,19 +232,22 @@ export default class Notes extends React.Component {
   }
 
   handleBrowserOpen = () => {
-    Linking.openURL(URL).catch((err) => console.error('An error occurred', err));
+    // SendIntentAndroid.sendText({
+    //   title: "Please share this text",
+    //   text: "Lorem ipsum dolor sit amet, per error erant eu, antiopam intellegebat ne sed",
+    //   type: SendIntentAndroid.TEXT_PLAIN,
+    // });
+    SendIntentAndroid.sendMail("manojmansukh7@gmail.com.com", "gmail intent", "hiii  mj");
+   // Linking.openURL(URL).catch((err) => console.error('An error occurred', err));
   }
 
   handleProfileSet =() =>{
     this.setState({ profileVisible: true })
 
   }
-  async componentDidMount() {
-    //this.checkPermission();
-    //this.createNotificationListeners();
-    const nameList = ''
 
-    //getNotes1();
+  async componentDidMount() {
+    getUserId();
 
     this.showNotification(dateTime, note, title)
     var date = moment()
