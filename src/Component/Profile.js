@@ -108,6 +108,7 @@ export default class Profile extends Component {
         await this.setState({
           image: response
         })
+        //firebase method
         storeProfileImage(response.uri)
       }
 
