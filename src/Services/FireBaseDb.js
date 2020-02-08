@@ -28,7 +28,7 @@ export function getNotes(callback) {
 }
 
 export function storeProfileImage(imgSource) {
-    const uid = firebase.auth().currentUser.uid
+   // const uid = firebase.auth().currentUser.uid
     firebase.database().ref('/users/' + uid + '/personal/').update({
         ProfileImage: imgSource
     })

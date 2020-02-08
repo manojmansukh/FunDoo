@@ -80,10 +80,12 @@ export default class CreateNotes extends React.Component {
         //firebase method
         saveNote(this.state.title, this.state.note, this.state.date, this.state.time, this.state.pin, this.state.bgColor)
         this.props.navigation.navigate('Notes')
-        ToastExample.show('Note Create Successfully', ToastExample.SHORT);
-
+       // ToastExample.show('Note Create Successfully', ToastExample.SHORT);
+        ToastExample.launchMailApp();
         setTimeout(() => {
           ToastExample.show('Note Create Successfully', ToastExample.SHORT);
+          //ToastExample.launchMailApp();
+
         }, 2000)
       }
     }

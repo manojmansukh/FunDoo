@@ -1,55 +1,3 @@
-// import React, { Component } from 'react';
-// import { View, StyleSheet,Linking, Image, TouchableOpacity, Card, Button, Text} from 'react-native';
-// import Dialog from "react-native-dialog";
-// import Logout from'./Logout'
-// import ImagePicker from 'react-native-image-picker';
-
-// export default class DialogProfile extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//      visible:false,
-//      image:null,
-
-//     };
-//   }
-
-//     render() {
-//     return (
-
-//       <Dialog.Container visible={this.props.dialogVisible}>
-//         <View style={{ justifyContent: 'center', alignItems: 'flex-end', top: -30 }}>
-//           <TouchableOpacity onPress={this.props.handleCancel}>
-//             <Image style={{ height: 30, width: 30, }}
-//               source={require('../Asserts/Cancle.png')} />
-//           </TouchableOpacity>
-//         </View>
-//         {/* <View style={{top:-40,height:230}}> */}
-//           <Logout />
-//         {/* </View> */}
-
-//       </Dialog.Container>
-
-//     );
-//   }
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     alignItems: 'center',
-//     marginTop: 50,
-//     padding: 30,
-//     backgroundColor: '#ffffff',
-//   },
-//   input: {
-//     width: 250,
-//     height: 44,
-//     padding: 10,
-//     margin: 20,
-//     backgroundColor: '#D3D3D3',
-//   },
-// });
 
 import React, { Component } from 'react';
 import { View, PermissionsAndroid, AsyncStorage, Image } from 'react-native';
@@ -57,7 +5,6 @@ import { Dialog, Avatar, Button } from 'material-bread';
 import { signOut, getUserDetails } from '../Services/FireBaseDb';
 import ImagePicker from 'react-native-image-picker'
 import * as Permissions from './AndroidPermission'
-//import { storeProfileImage } from '../Services/FireBaseDb'
 import { Title, Paragraph } from 'react-native-paper';
 import { onSignOut } from "./Authentication";
 import { storeProfileImage } from '../Services/FireBaseDb'
@@ -127,7 +74,7 @@ export default class Profile extends Component {
 
   componentDidMount = async () => {
     getUserDetails(async (snap) => {
-      console.log("mj....", snap.ProfileImage);
+      console.log("mj....", snap);
 
       await this.setState({
         userObj: snap,

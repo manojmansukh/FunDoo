@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { View, TouchableOpacity, Text, Image, KeyboardAvoidingView, ScrollView, StyleSheet, TextInput } from "react-native";
 import firebase from '../fireBase/Config';
 import { onSignIn } from "./Authentication";
-import { SetCurrentUser } from "./Authentication";
 import { AsyncStorage } from "react-native";
 import { getUserId } from '../Services/FireBaseDb'
 import { styles } from '../CSS/LoginPage.Style';
@@ -23,6 +22,7 @@ export default class Login extends Component {
       fbId: '',
       avatar_url: '',
       avatar_show: false,
+      ProfileImage:''
     }
   }
 
@@ -80,7 +80,7 @@ export default class Login extends Component {
     console.log("details")
     // Create a graph request asking for user information with a callback to handle the response.
     const infoRequest = new GraphRequest(
-      '/me?fields=name,email',
+      '/me?fields=name,email,picture.type(large)',
       null,
       this._responseInfoCallback,
     );
@@ -89,19 +89,15 @@ export default class Login extends Component {
   }
 
   _responseInfoCallback = (error, result) => {
-
     if (error) {
       console.log('Error fetching data: ' + error);
     } else {
-
-      this.setState({ user_name: result.name, fbId: result.id, email: result.email }, () => {
-        // console.log('Success fetching datall: ', result);
+      this.setState({ user_name: result.name, fbId: result.id, email: result.email, ProfileImage: result.picture.data.url}, () => {
       })
 
       AccessToken.getCurrentAccessToken()
         .then((data) => {
           const credential = firebase.auth.FacebookAuthProvider.credential(data.accessToken);
-          console.log("cre", credential);
           firebase.auth().signInWithCredential(credential)
             // .then(loginUserSuccess(dispatch))
             .then((success) => {
@@ -121,7 +117,10 @@ export default class Login extends Component {
     firebase.database().ref('/users/' + uid + '/personal').set({
       firstName: this.state.user_name,
       email: this.state.email,
-      fbId: this.state.fbId
+      fbId: this.state.fbId,
+      ProfileImage: this.state.ProfileImage
+
+
     })
     onSignIn();
     //getUserId();

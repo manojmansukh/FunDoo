@@ -298,6 +298,7 @@ exports[`LoginPage SignUpPage1 Page renders correctly 1`] = `
         </View>
         <TouchableOpacity
           activeOpacity={0.2}
+          onPress={[Function]}
         >
           <Image
             source={

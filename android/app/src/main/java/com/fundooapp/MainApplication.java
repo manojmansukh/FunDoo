@@ -37,6 +37,7 @@ public class MainApplication extends Application implements ReactApplication {
             //new ImagePickerPackage(),
             //new FingerprintAuthPackage(),
            // packages.add(new KeychainPackage());
+           // packages.add(new RNSmtpMailerPackage());
             packages.add(new RNFirebaseNotificationsPackage());
             packages.add(new CustomToastPackage());
 //            packages.add(new RNSendIntentPackage());

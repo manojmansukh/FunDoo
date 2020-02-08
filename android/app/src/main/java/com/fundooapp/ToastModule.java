@@ -1,15 +1,13 @@
 package com.fundooapp;
 
 import android.widget.Toast;
-
-import com.facebook.react.bridge.NativeModule;
+import android.content.Intent;
 import com.facebook.react.bridge.ReactApplicationContext;
-import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
 public class ToastModule extends ReactContextBaseJavaModule {
     private static ReactApplicationContext reactContext;
@@ -27,6 +25,7 @@ public class ToastModule extends ReactContextBaseJavaModule {
         return "ToastExample";
     }
 
+
     @Override
     public Map<String, Object> getConstants() {
         final Map<String, Object> constants = new HashMap<>();
@@ -37,6 +36,16 @@ public class ToastModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void show(String message, int duration) {
+//        Intent intent = new Intent(Intent.ACTION_MAIN);
+//        intent.addCategory(Intent.CATEGORY_APP_EMAIL);
+//        getCurrentActivity().startActivity(intent);
         Toast.makeText(getReactApplicationContext(), message, duration).show();
+    }
+
+    @ReactMethod
+    public void launchMailApp() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_APP_EMAIL);
+        getCurrentActivity().startActivity(intent);
     }
 }

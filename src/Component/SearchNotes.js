@@ -64,10 +64,11 @@ export default class SearchNotes extends React.Component {
                 <SearchBar
                     placeholder="Type Here..."
                     lightTheme
-                    round
+                    // round
                     onChangeText={text => this.searchFilterFunction(text)}
                     autoCorrect={false}
                     value={this.state.value}
+                    
                 />
                 
                 <FlatList
@@ -75,13 +76,13 @@ export default class SearchNotes extends React.Component {
                     renderItem={({ item }) =>
                         <TouchableOpacity style={{ width: this.state.listView ? '95%' : '45%', height: this.state.listView ? 'auto' : 'auto', margin: 10 }}
                             onPress={() => this.props.navigation.navigate('EditNote', { 'inform': this.state.dataSource[item], "currentNoteId": this.state.dataSource[item].noteId })} a >
-                            <View style={{ backgroundColor: this.state.dataSource[item].BgColor, paddingTop: 10, paddingBottom: 10, width: '100%', position: "relative", borderRadius: 7, borderWidth: 1, display: 'flex', }}>
+                            <View style={{ backgroundColor: this.state.dataSource[item].BgColor, paddingTop: 10, paddingBottom: 10, width: '100%', position: "relative", borderRadius: 7, borderWidth: .3, display: 'flex', }}>
                                 <View>
                                     <Text style={styles.subText}>{this.state.dataSource[item].Title}</Text>
                                     <Text style={styles.subText}>{this.state.dataSource[item].Note}</Text>
                                     {
                                         this.state.dataSource[item].Date !== undefined && this.state.dataSource[item].Time !== undefined ?
-                                            <Chip icon="alarm" style={{ bottom: 17, width: 175, marginLeft: 6 }}>{this.state.dataSource[item].Date}{'  '}{this.state.dataSource[item].Time}</Chip>
+                                            <Chip icon="alarm" style={{ bottom: 17, width: 175, marginLeft: 6,backgroundColor:'transparent',borderWidth:.1 }}>{this.state.dataSource[item].Date}{'  '}{this.state.dataSource[item].Time}</Chip>
                                             : null
                                     }
                                 </View>

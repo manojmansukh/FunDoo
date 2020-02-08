@@ -25,7 +25,7 @@ export default class AppBar1 extends Component {
 
   render() {
     return (
-      <Appbar style={{ backgroundColor: 'white', borderRadius: 8, margin: 10 }}>
+      <Appbar style={{ backgroundColor: 'transparent', borderRadius: 8, margin: 10 }}>
         <View style={{ flexDirection: 'row', width: '100%' }}>
 
           <View style={{ width: '70%', backgroundColor: 'white', flexDirection: 'row' }}>

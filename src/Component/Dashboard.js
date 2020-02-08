@@ -1,6 +1,7 @@
 import * as React from 'react';
 import firebase from '../fireBase/Config';
-import DialogWhatsappMessage from './DialogWhatsappMessage'
+import DialogWhatsappMessage from './DialogWhatsappMessage';
+import ToastExample from './ToastExample';
 import DialogProfile from './Profile'
 import axios from 'axios';
 import moment from 'moment';
@@ -228,22 +229,19 @@ export default class Notes extends React.Component {
 
   handleWhatsAppOpen = () => {
     this.setState({ dialogVisible: true })
-    //Linking.openURL(`whatsapp://send?phone=${918605621964}&text=${"console.disableYellowBox = true;"}`);
+    //Linking.openURL(`whatsapp://send?phone=${918605621964}&text=${"hiii"}`);
+  }
+
+  handleMailAppOpen = () => {
+    ToastExample.launchMailApp();
   }
 
   handleBrowserOpen = () => {
-    // SendIntentAndroid.sendText({
-    //   title: "Please share this text",
-    //   text: "Lorem ipsum dolor sit amet, per error erant eu, antiopam intellegebat ne sed",
-    //   type: SendIntentAndroid.TEXT_PLAIN,
-    // });
-    SendIntentAndroid.sendMail("manojmansukh7@gmail.com.com", "gmail intent", "hiii  mj");
-   // Linking.openURL(URL).catch((err) => console.error('An error occurred', err));
+    Linking.openURL(URL).catch((err) => console.error('An error occurred', err));
   }
 
   handleProfileSet =() =>{
     this.setState({ profileVisible: true })
-
   }
 
   async componentDidMount() {
@@ -400,6 +398,7 @@ export default class Notes extends React.Component {
         <Bottombar1 handleNavigation={this.handleNavigation}
           handleBrowserOpen={this.handleBrowserOpen}
           handleWhatsappOpen={this.handleWhatsAppOpen}
+          handleGmailOpen={this.handleMailAppOpen}
         />
         <DialogWhatsappMessage dialogVisible={this.state.dialogVisible}
           handleCancel={this.handleCancel}

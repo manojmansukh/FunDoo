@@ -128,6 +128,7 @@ export default class RegistrationPage extends Component {
                     <Text style={styles.error}>{this.state.firstNameError}</Text>
 
                     <TextInput style={styles.input}
+                        testID= 'lastName'
                         placeholder="Last Name"
                         onChangeText={(text) => this.validateText(text, 'lastName')} />
                     <Text style={styles.error}>{this.state.lastNameError}</Text>
