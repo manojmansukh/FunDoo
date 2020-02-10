@@ -2,13 +2,12 @@ import * as React from 'react';
 import firebase from '../fireBase/Config';
 import DialogWhatsappMessage from './DialogWhatsappMessage';
 import ToastExample from './ToastExample';
-import DialogProfile from './Profile'
 import axios from 'axios';
 import moment from 'moment';
 import { View } from 'native-base';
 import { AsyncStorage } from "react-native";
 import AppBar1 from './AppBar1';
-import { Chip, } from 'react-native-paper';
+import { Chip } from 'react-native-paper';
 import AppBarSelectedNotes from './AppBarSelectedNotes';
 import PushNotification from "react-native-push-notification";
 import Bottombar1 from './Bottombar1';
@@ -316,6 +315,9 @@ export default class Notes extends React.Component {
         </View>
         <View style={{ width: '100%', display: 'flex', height: '80%', }}>
           <ScrollView>
+            <TouchableOpacity onPress={openGoogle}>
+              <Text>openGoogle</Text>
+            </TouchableOpacity>
             <View>
               {
                 this.state.pinData.length !== 0 ? <View><Text style={{ fontSize: 12, marginLeft: 10, top: 5, bottom: 5, margin: 3 }}>PINNED</Text></View> : null

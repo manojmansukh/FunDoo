@@ -1,0 +1,16 @@
+{
+  "name": "react-native-facebook-login-page",
+  "version": "1.0.5",
+  "description": "facebook login page",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "npm",
+    "facebook",
+    "login"
+  ],
+  "author": "Manoj Mansukh",
+  "license": "ISC"
+}

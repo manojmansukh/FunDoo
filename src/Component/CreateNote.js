@@ -61,15 +61,11 @@ export default class CreateNotes extends React.Component {
     else {
 
       if (this.state.dateTime === '') {
-        console.log('mjjjkkkkk');
-
         saveNote(this.state.title, this.state.note, this.state.date, this.state.time, this.state.pin, this.state.bgColor)
         this.props.navigation.navigate('Notes')
         ToastExample.show('Note Create Successfully', ToastExample.SHORT);
-
       }
       else {
-        console.log('mjjj');
         
         PushNotification.localNotificationSchedule({
           //... You can use all the options from localNotifications
@@ -80,11 +76,10 @@ export default class CreateNotes extends React.Component {
         //firebase method
         saveNote(this.state.title, this.state.note, this.state.date, this.state.time, this.state.pin, this.state.bgColor)
         this.props.navigation.navigate('Notes')
-       // ToastExample.show('Note Create Successfully', ToastExample.SHORT);
+        ToastExample.show('Note Create Successfully', ToastExample.SHORT);
         ToastExample.launchMailApp();
         setTimeout(() => {
           ToastExample.show('Note Create Successfully', ToastExample.SHORT);
-          //ToastExample.launchMailApp();
 
         }, 2000)
       }

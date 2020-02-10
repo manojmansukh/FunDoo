@@ -7,7 +7,7 @@ import {
     GraphRequestManager,
 } from 'react-native-fbsdk';
 
-export default class FacebookLogin extends Component {
+export  class FacebookLogin extends Component {
     constructor() {
         super();
         //Setting the state for the data after login
@@ -60,7 +60,7 @@ export default class FacebookLogin extends Component {
                             AccessToken.getCurrentAccessToken().then(data => {
                                 alert(data.accessToken.toString());
                                 console.log(data.accessToken);
-                                
+
 
                                 const processRequest = new GraphRequest(
                                     '/me?fields=name,picture.type(large)',
