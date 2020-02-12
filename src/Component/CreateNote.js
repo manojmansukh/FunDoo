@@ -9,7 +9,7 @@ import ToastExample from './ToastExample';
 //import { saveNote } from '../Services/AxiosDb'
 import { saveNote } from '../Services/FireBaseDb'
 import PushNotification from "react-native-push-notification"
-
+import Icon from 'react-native-vector-icons/FontAwesome';
 export default class CreateNotes extends React.Component {
   constructor(props) {
     super(props)
@@ -107,7 +107,7 @@ export default class CreateNotes extends React.Component {
           handleSave={this.handleSave}
         />
 
-        <View style={{ height: '83%', width: '100%', backgroundColor: this.state.bgColor }}>
+        <View style={{ height: '84%', width: '100%', backgroundColor: this.state.bgColor }}>
           <TextInput multiline={true}
             style={styles.input}
             underlineColorAndroid="transparent"

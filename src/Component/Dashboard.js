@@ -267,11 +267,11 @@ export default class Notes extends React.Component {
             var Key = key
             var data = this.state.dataSource[key]
 
-            if (this.state.dataSource[key].Pin == true && this.state.dataSource[key].Trash == false) {
+            if (this.state.dataSource[key].Pin == true && this.state.dataSource[key].Trash == false && this.state.dataSource[key].Archive == false) {
               this.state.dataSource[key].noteId = key
               pinData.push(this.state.dataSource[key])
             }
-            else if (this.state.dataSource[key].Pin == false && this.state.dataSource[key].Trash == false) {
+            else if (this.state.dataSource[key].Pin == false && this.state.dataSource[key].Trash == false && this.state.dataSource[key].Archive == false) {
               this.state.dataSource[key].noteId = key
               unPinData.push(this.state.dataSource[key])
             }
@@ -294,8 +294,10 @@ export default class Notes extends React.Component {
   render() {
 
     return (
+      
       <View style={{ flex: 1, width: '100%', height: "100%" }}>
         <View style={{ height: '12%', }}>
+          
           {
             this.state.selectionMode ?
               <AppBarSelectedNotes
@@ -315,9 +317,7 @@ export default class Notes extends React.Component {
         </View>
         <View style={{ width: '100%', display: 'flex', height: '80%', }}>
           <ScrollView>
-            <TouchableOpacity onPress={openGoogle}>
-              <Text>openGoogle</Text>
-            </TouchableOpacity>
+           
             <View>
               {
                 this.state.pinData.length !== 0 ? <View><Text style={{ fontSize: 12, marginLeft: 10, top: 5, bottom: 5, margin: 3 }}>PINNED</Text></View> : null

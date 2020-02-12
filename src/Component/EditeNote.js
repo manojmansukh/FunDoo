@@ -30,6 +30,8 @@ export default class EditeNotes extends React.Component {
     this.handleSaveNote = this.handleSaveNote.bind(this);
   }
 
+  handleArchiveStatus = (status) => this.setState({ archive: status });
+
   handleShowDialog = (status) => { this.setState({ dialogVisible: status }) }
 
   handleCloseDialog = (status, date, time, dateTime) => { this.setState({ dialogVisible: status, date: date, time: time, dateTime: dateTime }) }

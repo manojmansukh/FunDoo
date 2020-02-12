@@ -21,7 +21,8 @@ export function getUserDetails(callback) {
 }
 
 export function getNotes(callback) {
-    const ref = firebase.database().ref('/users/' + uid + '/Notes/').orderByChild('Trash').equalTo(false)
+    const ref = firebase.database().ref('/users/' + uid + '/Notes/')
+    .orderByChild('Trash').equalTo(false) 
     ref.on('value',(snapshot) => {
         callback(snapshot.val())
     })

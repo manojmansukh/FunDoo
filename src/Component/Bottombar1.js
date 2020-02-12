@@ -28,7 +28,7 @@ export default class Bottombar1 extends Component {
         <View style={{ fles: 1, backgroundColor: 'white' }}>
           <TouchableOpacity style={{ justifyContent: 'flex-end', alignItems: 'flex-end' }}
             onPress={this.props.handleNavigation}>
-            <Image style={{ height: "150%", bottom: 25, }} resizeMode="contain" source={require('../Asserts/addd.png')} />
+            <Image style={{ height: "150%", bottom: 26, }} resizeMode="contain" source={require('../Asserts/transparent.png')} />
           </TouchableOpacity>
         </View>
 
