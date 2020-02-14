@@ -47,6 +47,8 @@ target 'FundooApp' do
 
   pod 'RNSmtpMailer', :path => '../node_modules/react-native-smtp-mailer'
 
+  pod 'RNFastImage', :path => '../node_modules/react-native-fast-image'
+
   target 'FundooAppTests' do
     inherit! :search_paths
     # Pods for testing

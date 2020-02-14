@@ -1,12 +1,12 @@
 
 import { createSwitchNavigator, createAppContainer } from "react-navigation";
 import SplashScreen from './SplashScreen'
-import Lock from './Lock'
+import ScreenLock from './ScreenLock'
 import NavigationStack from './NavigationStack'
 
 const AppNavigator = createSwitchNavigator({
     SplashScreen: SplashScreen,
-    Lock: Lock,
+    ScreenLock: ScreenLock,
     NavigationStack: NavigationStack,
 });
 

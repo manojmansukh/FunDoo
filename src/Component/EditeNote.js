@@ -8,6 +8,7 @@ import PushNotification from "react-native-push-notification";
 import { styles } from '../CSS/EditeNotes.Style'
 import { editNote, setReminder, moveToTrash } from '../Services/FireBaseDb'
 //import { editNote, setReminder, moveToTrash } from '../Services/AxiosDb'
+import FastImage from 'react-native-fast-image'
 
 
 export default class EditeNotes extends React.Component {
@@ -95,7 +96,8 @@ export default class EditeNotes extends React.Component {
         pin: this.state.dataSource.Pin,
         archive: this.state.dataSource.Archive,
         trash: this.state.dataSource.Trash,
-        bgColor: this.state.dataSource.BgColor
+        bgColor: this.state.dataSource.BgColor,
+        image: this.state.dataSource.Image,
       })
     })
   }
@@ -112,6 +114,20 @@ export default class EditeNotes extends React.Component {
         />
   
         <View style={{ height: '84%', width: '100%', backgroundColor: this.state.bgColor }}>
+          
+          {
+            this.state.Image !== undefined ? 
+            <FastImage
+              style={{ width: this.state.listView ? '100%' : '100%', height: 200 }}
+              source={{ uri: this.state.image }}
+              resizeMode={FastImage.resizeMode.contain}
+            /> : null
+          }
+          <FastImage
+            style={{ width: this.state.listView ? '100%' : '100%', height: 200 }}
+            source={{ uri: this.state.image }}
+            resizeMode={FastImage.resizeMode.cover}
+          />
           <TextInput multiline={true}
             style={styles.input}
             value={this.state.title}

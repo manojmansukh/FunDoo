@@ -74,8 +74,6 @@ export default class Profile extends Component {
 
   componentDidMount = async () => {
     getUserDetails(async (snap) => {
-      console.log("mj....", snap);
-
       await this.setState({
         userObj: snap,
         firstName: snap.firstName,

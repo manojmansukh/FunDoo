@@ -35,7 +35,7 @@ export function storeProfileImage(imgSource) {
     })
 }
 
-export function saveNote(title,note,date,time,pin,bgColor){
+export function saveNote(title,note,date,time,pin,bgColor,imgUrl){
     var uid = firebase.auth().currentUser.uid
     firebase.database().ref('/users/' + uid + '/Notes/').push({
           Title: title,
@@ -46,6 +46,7 @@ export function saveNote(title,note,date,time,pin,bgColor){
           BgColor: bgColor,
           Archive:  false,
           Trash: false,
+          Image:imgUrl
         })
 }
 

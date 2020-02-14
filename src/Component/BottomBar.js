@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { Text } from 'react-native';
 import { Appbar, FAB, Portal, Provider, Menu } from 'react-native-paper';
 import ColorPalette from 'react-native-color-palette'
+import ImagePickerActivity from './ImagePickerActivity'
 import moment from 'moment';
+import { View } from 'native-base';
 
 export default class BottomBar extends Component {
   constructor(props) {
@@ -26,12 +28,13 @@ export default class BottomBar extends Component {
       currentTime: date
     })
   }
+  
 
   render() {
     return (
       <Provider>
-        <Appbar.Header style={{ backgroundColor: 'white', justifyContent: 'space-between' }}>
-          <Appbar.Action icon={require('../Asserts/AddBox.png')} style={{}} onPress={this._handleMore} />
+        <Appbar.Header style={{ backgroundColor: 'white', justifyContent: 'space-between'  }}>
+          <View style={{ marginLeft: 15 }}><ImagePickerActivity handleImage={this.props.handleImage}  /></View>
           <Text>Edited {this.state.currentTime}</Text>
           <Menu
             visible={this.state.visible}

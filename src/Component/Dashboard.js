@@ -4,17 +4,18 @@ import DialogWhatsappMessage from './DialogWhatsappMessage';
 import ToastExample from './ToastExample';
 import axios from 'axios';
 import moment from 'moment';
-import { View } from 'native-base';
-import { AsyncStorage } from "react-native";
+// import { View } from 'native-base';
+import { AsyncStorage ,Image} from "react-native";
 import AppBar1 from './AppBar1';
 import { Chip } from 'react-native-paper';
 import AppBarSelectedNotes from './AppBarSelectedNotes';
 import PushNotification from "react-native-push-notification";
 import Bottombar1 from './Bottombar1';
 import { styles } from '../CSS/Dashboard.Style'
-import { FlatList, Text, ScrollView, TouchableOpacity, Linking } from 'react-native';
+import { FlatList, Text, ScrollView, TouchableOpacity, Linking, View} from 'react-native';
 import { getNotes, setPin, setArchive, setTrash, PermanentDelete ,getUserId} from '../Services/FireBaseDb';
 //import { getNotes, setPin, setArchive, setTrash, } from '../Services/AxiosDb';
+import FastImage from 'react-native-fast-image'
 
 var dateTime, note, title, systemTime;
 const URL = "https://www.google.com/"
@@ -333,8 +334,17 @@ export default class Notes extends React.Component {
                     onLongPress={() => this.handlerLongClick(this.state.pinData[item].noteId)}
                     onPress={() => this.state.selectionMode ? this.handleSelectionNode(this.state.pinData[item].noteId) : this.props.navigation.navigate('EditNote', { 'inform': this.state.pinData[item], "currentNoteId": this.state.pinData[item].noteId })}
                   >
-                    <View style={{ backgroundColor: this.state.pinData[item].BgColor, paddingTop: 10, paddingBottom: 10, width: '100%', position: "relative", borderRadius: 7, borderWidth: 1, display: 'flex', borderColor: this.state.selectionMode && this.state.selectedData.includes(this.state.pinData[item].noteId) ? 'black' : '#DDE6E2', }}>
-                      <View>
+                    <View style={{ backgroundColor: this.state.pinData[item].BgColor,  paddingBottom: 10, width: '100%', position: "relative", borderRadius: 7, borderWidth: 1, display: 'flex', borderColor: this.state.selectionMode && this.state.selectedData.includes(this.state.pinData[item].noteId) ? 'black' : '#DDE6E2', }}>
+                        {
+                          this.state.pinData[item].Image !== undefined ? 
+                          <FastImage
+                            style={{ width: this.state.listView ? '100%' : '100%', height:this.state.listView ? 400:200 }}
+                            source={{ uri: this.state.pinData[item].Image}}
+                            resizeMode={FastImage.resizeMode.stretch}
+                          /> :null
+                        }
+                       
+                        
                         <Text style={styles.subText}>{this.state.pinData[item].Title}</Text>
                         <Text style={styles.subText}>{this.state.pinData[item].Note}</Text>
 
@@ -352,7 +362,6 @@ export default class Notes extends React.Component {
                               {this.state.pinData[item].Date}{'  '}{this.state.pinData[item].Time}</Chip>
                             : null
                         }
-                      </View>
                     </View>
                   </TouchableOpacity>
                 }
@@ -373,8 +382,14 @@ export default class Notes extends React.Component {
                   onPress={() => this.state.selectionMode ? this.handleSelectionNode(this.state.unPinData[item].noteId) : this.props.navigation.navigate('EditNote', { 'inform': this.state.unPinData[item], "currentNoteId": this.state.unPinData[item].noteId })}
                 >
                   <View style={{ backgroundColor: this.state.unPinData[item].BgColor, paddingTop: 10, paddingBottom: 10, width: '100%', position: "relative", borderColor: '#DDE6E2', borderRadius: 7, borderWidth: 1, display: 'flex', borderColor: this.state.selectionMode && this.state.selectedData.includes(this.state.unPinData[item].noteId) ? 'black' : '#DDE6E2', }}>
-
-                    <View style={{}}>
+                    {
+                          this.state.unPinData[item].Image !== undefined ? 
+                          <FastImage
+                            style={{ width: this.state.listView ? '100%' : '100%', height:this.state.listView ? 400:200 }}
+                            source={{ uri: this.state.unPinData[item].Image}}
+                            resizeMode={FastImage.resizeMode.stretch}
+                          /> :null
+                        }
                       <Text style={styles.subText}>{this.state.unPinData[item].Title}</Text>
                       <Text style={styles.subText}>{this.state.unPinData[item].Note}</Text>
                       {
@@ -389,7 +404,6 @@ export default class Notes extends React.Component {
                           : null
                       }
                     </View>
-                  </View>
                 </TouchableOpacity>
               }
             />

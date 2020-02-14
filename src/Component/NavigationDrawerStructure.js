@@ -88,7 +88,7 @@ const Logout_StackNavigator = createStackNavigator({
 });
 
 const AppDrawerNavigator = createDrawerNavigator({
- 
+
   NavNotes: {
     screen: Notes_StackNavigator,
     navigationOptions: {

@@ -36,6 +36,7 @@ export default class DialogWhatsappMessage extends Component {
                 }
             })
         })
+        
     }
     sendOnWhatsApp = () => {
         let msg = this.state.msg;
