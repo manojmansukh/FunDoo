@@ -58,8 +58,21 @@ export function editNote(currentNoteId,title,note,pin, archive, trash, bgColor){
         Archive: archive,
         Trash: trash,
         visible: false,
-        BgColor: bgColor
+        BgColor: bgColor,
       })
+}
+
+export function editNoteWithImage(currentNoteId, title, note, pin, archive, trash, bgColor, image) {
+    firebase.database().ref('/users/' + uid + '/Notes/' + currentNoteId).update({
+        Title: title,
+        Note: note,
+        Pin: pin,
+        Archive: archive,
+        Trash: trash,
+        visible: false,
+        BgColor: bgColor,
+        Image: image,
+    })
 }
 
 export function setReminder(currentNoteId,date,time){

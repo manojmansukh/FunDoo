@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, TextInput, Image, ScrollView} from 'react-native';
+import { StyleSheet, TextInput, Image, ScrollView } from 'react-native';
 import { View } from 'native-base';
 import { styles } from '../CSS/CreateNotes.Style'
 import moment from 'moment';
@@ -27,7 +27,7 @@ export default class CreateNotes extends React.Component {
       visible: false,
       currentTime: '',
       dateTime: '',
-      imgUrl:''
+      imgUrl: ''
     }
     this.handleSaveNote = this.handleSaveNote.bind(this);
   }
@@ -41,7 +41,7 @@ export default class CreateNotes extends React.Component {
   handleShowDialog = (status) => this.setState({ dialogVisible: status });
 
   handleCloseDialog = (status, date, time, dateTime) => {
-    this.setState({ dialogVisible: status ,date: date, time: time, dateTime: dateTime })
+    this.setState({ dialogVisible: status, date: date, time: time, dateTime: dateTime })
   };
 
   handleArchiveStatus = (status) => this.setState({ archive: status });
@@ -54,22 +54,22 @@ export default class CreateNotes extends React.Component {
   setTime = () => {
     this.setState({ date: false });
   };
-  
+
 
   handleSaveNote = () => {
-    if (this.state.note == '' && this.state.title == '') {
+    if (this.state.note == '' && this.state.title == '' && this.state.imgUrl == '') {
       this.props.navigation.navigate('Notes')
       ToastExample.show('Note Discarded', ToastExample.SHORT);
     }
     else {
 
       if (this.state.dateTime === '') {
-        saveNote(this.state.title, this.state.note, this.state.date, this.state.time, this.state.pin, this.state.bgColor,this.state.imgUrl)
+        saveNote(this.state.title, this.state.note, this.state.date, this.state.time, this.state.pin, this.state.bgColor, this.state.imgUrl)
         this.props.navigation.navigate('Notes')
         ToastExample.show('Note Create Successfully', ToastExample.SHORT);
       }
       else {
-        
+
         PushNotification.localNotificationSchedule({
           //... You can use all the options from localNotifications
           message: this.state.title,
@@ -112,28 +112,29 @@ export default class CreateNotes extends React.Component {
 
         <View style={{ height: '84%', width: '100%', backgroundColor: this.state.bgColor }}>
           <ScrollView>
-          {
-            this.state.imgUrl !== '' ?
-             <Image source={{ uri: this.state.imgUrl }} style={{ flex:1,height: 450, resizeMode: 'stretch', margin: 5 }} />
-            :null
-          }
-          <TextInput multiline={true}
-            style={styles.input}
-            underlineColorAndroid="transparent"
-            placeholder="Title"
-            onChangeText={(text) => this.setState({ title: text })} />
+            {
+              this.state.imgUrl !== '' ?
+                <Image source={{ uri: this.state.imgUrl }} style={{ flex: 1, height: 450, resizeMode: 'stretch', margin: 5 }} />
+                : null
+            }
+            <TextInput multiline={true}
+              style={styles.input}
+              underlineColorAndroid="transparent"
+              placeholder="Title"
+              onChangeText={(text) => this.setState({ title: text })} />
 
-          <TextInput multiline={true}
-            style={{ marginLeft: 20, fontSize: 15 }}
-            underlineColorAndroid="transparent"
-            placeholder="Note"
-            onChangeText={(text) => this.setState({ note: text })} />
+            <TextInput multiline={true}
+              style={{ marginLeft: 20, fontSize: 15 }}
+              underlineColorAndroid="transparent"
+              placeholder="Note"
+              onChangeText={(text) => this.setState({ note: text })} />
           </ScrollView>
         </View>
 
 
-        <BottomBar handleBgColour={this.handleNoteBgColour} 
-                  handleImage={this.handleImage} />
+        <BottomBar handleBgColour={this.handleNoteBgColour}
+          handleImage={this.handleImage}
+          handleCaptureImage={this.handleImage} />
 
       </View>
 

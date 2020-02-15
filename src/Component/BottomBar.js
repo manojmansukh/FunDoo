@@ -34,7 +34,7 @@ export default class BottomBar extends Component {
     return (
       <Provider>
         <Appbar.Header style={{ backgroundColor: 'white', justifyContent: 'space-between'  }}>
-          <View style={{ marginLeft: 15 }}><ImagePickerActivity handleImage={this.props.handleImage}  /></View>
+          <View style={{ marginLeft: 15 }}><ImagePickerActivity handleImage={this.props.handleImage} handleCaptureImage={this.props.handleCaptureImage}  /></View>
           <Text>Edited {this.state.currentTime}</Text>
           <Menu
             visible={this.state.visible}

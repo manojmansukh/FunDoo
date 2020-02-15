@@ -109,9 +109,9 @@ export default class Notes extends React.Component {
   handleListView = (listView) => {
     this.setState({ listView: listView }, () => {
       if (listView == true) {
-        return this.setState({ numColumns: 1 })
+        return this.setState({ numColumns: 2 })
       }
-      this.setState({ numColumns: 2 })
+      this.setState({ numColumns: 1 })
     })
   }
 
@@ -381,7 +381,7 @@ export default class Notes extends React.Component {
                   onLongPress={() => this.handlerLongClick(this.state.unPinData[item].noteId)}
                   onPress={() => this.state.selectionMode ? this.handleSelectionNode(this.state.unPinData[item].noteId) : this.props.navigation.navigate('EditNote', { 'inform': this.state.unPinData[item], "currentNoteId": this.state.unPinData[item].noteId })}
                 >
-                  <View style={{ backgroundColor: this.state.unPinData[item].BgColor, paddingTop: 10, paddingBottom: 10, width: '100%', position: "relative", borderColor: '#DDE6E2', borderRadius: 7, borderWidth: 1, display: 'flex', borderColor: this.state.selectionMode && this.state.selectedData.includes(this.state.unPinData[item].noteId) ? 'black' : '#DDE6E2', }}>
+                  <View style={{ backgroundColor: this.state.unPinData[item].BgColor, paddingBottom: 10, width: '100%', position: "relative", borderColor: '#DDE6E2', borderRadius: 7, borderWidth: 1, display: 'flex', borderColor: this.state.selectionMode && this.state.selectedData.includes(this.state.unPinData[item].noteId) ? 'black' : '#DDE6E2', }}>
                     {
                           this.state.unPinData[item].Image !== undefined ? 
                           <FastImage

@@ -44,6 +44,8 @@ export default class ImagePickerActivity extends Component {
                     filePath: response,
                     fileData: response.data,
                     fileUri: response.uri
+                }, () => {
+                    this.props.handleCaptureImage(this.state.fileUri)
                 });
             }
         });

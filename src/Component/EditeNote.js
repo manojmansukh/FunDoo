@@ -6,7 +6,7 @@ import BottomBar from './BottomBar';
 import moment from 'moment';
 import PushNotification from "react-native-push-notification";
 import { styles } from '../CSS/EditeNotes.Style'
-import { editNote, setReminder, moveToTrash } from '../Services/FireBaseDb'
+import { editNote, setReminder, moveToTrash, editNoteWithImage } from '../Services/FireBaseDb'
 //import { editNote, setReminder, moveToTrash } from '../Services/AxiosDb'
 import FastImage from 'react-native-fast-image'
 
@@ -26,7 +26,8 @@ export default class EditeNotes extends React.Component {
       visible: false,
       trash: '',
       currentTime: '',
-      bgColor: ''
+      bgColor: '',
+      image: ''
     }
     this.handleSaveNote = this.handleSaveNote.bind(this);
   }
@@ -67,16 +68,23 @@ export default class EditeNotes extends React.Component {
   };
 
   handleSaveNote = () => {
+    console.log("save note");
+
     if (this.state.note == '' && this.state.title == '') {
       this.props.navigation.navigate('Notes')
     }
     else {
       var currentNoteId = this.props.navigation.state.params.currentNoteId
       //firebase Method
-      editNote(currentNoteId, this.state.title, this.state.note, this.state.pin, this.state.archive, this.state.trash, this.state.bgColor)
+      this.state.image == undefined ?
+      editNote(currentNoteId, this.state.title, this.state.note, this.state.pin, this.state.archive, this.state.trash, this.state.bgColor):
+        editNoteWithImage(currentNoteId, this.state.title, this.state.note, this.state.pin, this.state.archive, this.state.trash, this.state.bgColor, this.state.image)
+
       this.props.navigation.navigate('Notes')
     }
   }
+
+  handleImage = (url) => { this.setState({ image: url }); }
 
   handleNoteBgColour = (color) => this.setState({ bgColor: color });
 
@@ -112,22 +120,18 @@ export default class EditeNotes extends React.Component {
           handleArchiveStatus={this.handleArchiveStatus}
           handleSave={this.handleSaveReminder}
         />
-  
+
         <View style={{ height: '84%', width: '100%', backgroundColor: this.state.bgColor }}>
-          
+
           {
-            this.state.Image !== undefined ? 
-            <FastImage
-              style={{ width: this.state.listView ? '100%' : '100%', height: 200 }}
-              source={{ uri: this.state.image }}
-              resizeMode={FastImage.resizeMode.contain}
-            /> : null
+            this.state.image !== undefined ?
+              <FastImage
+                style={{ width: '100%', height: 400 }}
+                source={{ uri: this.state.image }}
+                resizeMode={FastImage.resizeMode.stretch}
+              /> : null
           }
-          <FastImage
-            style={{ width: this.state.listView ? '100%' : '100%', height: 200 }}
-            source={{ uri: this.state.image }}
-            resizeMode={FastImage.resizeMode.cover}
-          />
+
           <TextInput multiline={true}
             style={styles.input}
             value={this.state.title}
@@ -145,7 +149,9 @@ export default class EditeNotes extends React.Component {
           </TextInput>
 
         </View>
-        <BottomBar handleBgColour={this.handleNoteBgColour} />
+        <BottomBar handleBgColour={this.handleNoteBgColour}
+          handleImage={this.handleImage}
+          handleCaptureImage={this.handleImage} />
       </View>
 
     );
