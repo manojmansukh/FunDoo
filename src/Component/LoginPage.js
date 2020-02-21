@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, TouchableOpacity, Text, Image, KeyboardAvoidingView, ScrollView, StyleSheet, TextInput } from "react-native";
+import { View, TouchableOpacity, Text, Image, KeyboardAvoidingView, ScrollView, ActivityIndicator, TextInput } from "react-native";
 import firebase from '../fireBase/Config';
 import { onSignIn } from "./Authentication";
 import { AsyncStorage } from "react-native";
@@ -22,7 +22,8 @@ export default class Login extends Component {
       fbId: '',
       avatar_url: '',
       avatar_show: false,
-      ProfileImage:''
+      ProfileImage:'',
+      loading: true,
     }
   }
 
@@ -113,7 +114,7 @@ export default class Login extends Component {
     }
   }
 
-  registerFbUser = (uid) => {
+  registerFbUser = async(uid) => {
     firebase.database().ref('/users/' + uid + '/personal').set({
       firstName: this.state.user_name,
       email: this.state.email,
@@ -123,19 +124,21 @@ export default class Login extends Component {
 
     })
     onSignIn();
-    //getUserId();
-    AsyncStorage.setItem("UserId",uid).then(getUserId())
-    this.props.navigation.navigate('Drawer')
+    await AsyncStorage.setItem("UserId",uid)
+    this.setState({ loading: false })
+    this.props.navigation.navigate('SplashScreen')
    }
 
    //email Login
   handleLogin = () => {
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then(() => {
-        onSignIn();
-        AsyncStorage.setItem("UserId", firebase.auth().currentUser.uid).then(getUserId())
+      .then(async() => {
+        onSignIn()
+        await AsyncStorage.setItem("UserId", firebase.auth().currentUser.uid).then(console.log("mj"))
+        await getUserId()
+        this.setState({ loading: false})
         //this.props.navigation.navigate('Lock')
-        this.props.navigation.navigate('Drawer')
+        this.props.navigation.navigate('SplashScreen')
 
       })
       .catch((error) => {
@@ -147,6 +150,13 @@ export default class Login extends Component {
   }
 
   render() {
+    // if (this.state.loading) {
+    //   return (
+    //     <View style={styles.loader}>
+    //       <ActivityIndicator size="large" color="#0c9" />
+    //     </View>
+    //   )
+    // }
     return (
 
       <KeyboardAvoidingView style={styles.innerView}>

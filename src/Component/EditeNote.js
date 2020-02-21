@@ -149,7 +149,7 @@ export default class EditeNotes extends React.Component {
           </TextInput>
 
         </View>
-        <BottomBar handleBgColour={this.handleNoteBgColour}
+        <BottomBar handleBgColour = {this.handleNoteBgColour}
           handleImage={this.handleImage}
           handleCaptureImage={this.handleImage} />
       </View>

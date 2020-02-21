@@ -7,7 +7,7 @@ import ImagePicker from 'react-native-image-picker'
 import * as Permissions from './AndroidPermission'
 import { Title, Paragraph } from 'react-native-paper';
 import { onSignOut } from "./Authentication";
-import { storeProfileImage } from '../Services/FireBaseDb'
+import { storeProfileImage, removeUserId } from '../Services/FireBaseDb'
 
 
 const options = {
@@ -148,6 +148,7 @@ export default class Profile extends Component {
               text={'Sign out'}
               onPress={() => onSignOut().then(() =>
                 this.setState({ visible: false }),
+                removeUserId(),
                 this.props.navigation.navigate('SignIn'))}
             />
           </View>

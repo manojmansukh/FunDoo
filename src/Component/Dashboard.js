@@ -13,7 +13,7 @@ import PushNotification from "react-native-push-notification";
 import Bottombar1 from './Bottombar1';
 import { styles } from '../CSS/Dashboard.Style'
 import { FlatList, Text, ScrollView, TouchableOpacity, Linking, View} from 'react-native';
-import { getNotes, setPin, setArchive, setTrash, PermanentDelete ,getUserId} from '../Services/FireBaseDb';
+import { getNotes, setPin, setArchive, PermanentDelete ,getUserId, moveToTrash} from '../Services/FireBaseDb';
 //import { getNotes, setPin, setArchive, setTrash, } from '../Services/AxiosDb';
 import FastImage from 'react-native-fast-image'
 
@@ -91,7 +91,7 @@ export default class Notes extends React.Component {
       var currentUser = firebase.auth().currentUser.uid
       this.state.selectedData.map(currentNoteId => (
         //firebase Method
-        setTrash(currentNoteId, this.state.trash)
+        moveToTrash(currentNoteId, this.state.trash)
       ))
     })
   }
@@ -109,9 +109,9 @@ export default class Notes extends React.Component {
   handleListView = (listView) => {
     this.setState({ listView: listView }, () => {
       if (listView == true) {
-        return this.setState({ numColumns: 2 })
+        return this.setState({ numColumns: 1 })
       }
-      this.setState({ numColumns: 1 })
+      this.setState({ numColumns: 2 })
     })
   }
 

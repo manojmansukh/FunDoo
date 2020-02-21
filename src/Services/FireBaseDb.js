@@ -1,16 +1,20 @@
 import * as React from 'react';
 import firebase from '../fireBase/Config'
 import { AsyncStorage } from "react-native";
-var uid ;
+var uid;
 
 export function getUserId() {
+    console.log("id");
+
     AsyncStorage.getItem("UserId").then((value) => {
-        uid = value        
+        uid = value
     })
 }
 
 export function removeUserId() {
-     uid=''     
+    console.log("removeuser");
+    AsyncStorage.setItem("UserId", null)
+    uid = null
 }
 
 export function getUserDetails(callback) {
@@ -22,35 +26,35 @@ export function getUserDetails(callback) {
 
 export function getNotes(callback) {
     const ref = firebase.database().ref('/users/' + uid + '/Notes/')
-    .orderByChild('Trash').equalTo(false) 
-    ref.on('value',(snapshot) => {
+        .orderByChild('Trash').equalTo(false)
+    ref.on('value', (snapshot) => {
         callback(snapshot.val())
     })
 }
 
 export function storeProfileImage(imgSource) {
-   // const uid = firebase.auth().currentUser.uid
+    // const uid = firebase.auth().currentUser.uid
     firebase.database().ref('/users/' + uid + '/personal/').update({
         ProfileImage: imgSource
     })
 }
 
-export function saveNote(title,note,date,time,pin,bgColor,imgUrl){
+export function saveNote(title, note, date, time, pin, bgColor, imgUrl) {
     var uid = firebase.auth().currentUser.uid
     firebase.database().ref('/users/' + uid + '/Notes/').push({
-          Title: title,
-          Note: note,
-          Date: date,
-          Time: time,
-          Pin: pin,
-          BgColor: bgColor,
-          Archive:  false,
-          Trash: false,
-          Image:imgUrl
-        })
+        Title: title,
+        Note: note,
+        Date: date,
+        Time: time,
+        Pin: pin,
+        BgColor: bgColor,
+        Archive: false,
+        Trash: false,
+        Image: imgUrl
+    })
 }
 
-export function editNote(currentNoteId,title,note,pin, archive, trash, bgColor){    
+export function editNote(currentNoteId, title, note, pin, archive, trash, bgColor) {
     firebase.database().ref('/users/' + uid + '/Notes/' + currentNoteId).update({
         Title: title,
         Note: note,
@@ -59,7 +63,7 @@ export function editNote(currentNoteId,title,note,pin, archive, trash, bgColor){
         Trash: trash,
         visible: false,
         BgColor: bgColor,
-      })
+    })
 }
 
 export function editNoteWithImage(currentNoteId, title, note, pin, archive, trash, bgColor, image) {
@@ -75,32 +79,32 @@ export function editNoteWithImage(currentNoteId, title, note, pin, archive, tras
     })
 }
 
-export function setReminder(currentNoteId,date,time){
+export function setReminder(currentNoteId, date, time) {
     firebase.database().ref('/users/' + uid + '/Notes/' + currentNoteId).update({
         Date: date,
         Time: time,
-      })
+    })
 }
 
-export function setPin(currentNoteId,pin){
+export function setPin(currentNoteId, pin) {
     firebase.database().ref('/users/' + uid + '/Notes/' + currentNoteId).update({
         Pin: pin,
-      })
+    })
 }
 
-export function setArchive(currentNoteId,archive){
+export function setArchive(currentNoteId, archive) {
     firebase.database().ref('/users/' + uid + '/Notes/' + currentNoteId).update({
-            Archive: archive  
-        })
+        Archive: archive
+    })
 }
 
-export function moveToTrash(currentNoteId,trash){    
+export function moveToTrash(currentNoteId, trash) {
     firebase.database().ref('/users/' + uid + '/Notes/' + currentNoteId).update({
         Trash: trash,
-      })
+    })
 }
 
-export function PermanentDelete(currentNoteId){
+export function PermanentDelete(currentNoteId) {
     firebase.database().ref('/users/' + uid + '/Notes/' + currentNoteId).remove()
 
 }

@@ -28,12 +28,7 @@ const Lock = (props) => {
     const [enteredPin, setEnteredPin] = useState("")
     const [showCompletedButton, setShowCompletedButton] = useState(false)
 
-    // useEffect(async() => {
-    //     console.log("tyruyf");
-    //    let a =await AsyncStorage.getItem('passwordSet')
-    //    console.log(a);
-       
-    // },[])
+    
     useEffect(() => {
         console.log('hiiiii');
         getUserDetails((snapshotValue) => {
@@ -55,7 +50,6 @@ const Lock = (props) => {
             setShowCompletedButton(false)
         }
     }, [enteredPin])
-    //console.log(enteredPin);
     const save = async (accessControl) => {
         console.log('mj', state.username);
         console.log('mj', enteredPin);

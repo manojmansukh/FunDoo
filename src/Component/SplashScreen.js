@@ -16,7 +16,7 @@ export default class Notes extends React.Component {
         />
         <View style={{ flexDirection: 'row', alignItems: 'flex-start', top: -12, }}>
           <View ><Text style={{ color: '#4285F4', fontSize: 60, fontWeight: 'bold', }}>F</Text></View>
-          <View><Text style={{ color: '#DB4437', fontSize: 60, fontWeight: 'bold' }}>u</Text></View>
+          <View><Text style={{ color: '#DB4437',    fontSize: 60, fontWeight: 'bold' }}>u</Text></View>
           <View ><Text style={{ color: '#F4B400', fontSize: 60, fontWeight: 'bold' }}>n</Text></View>
           <View ><Text style={{ color: '#4285F4', fontSize: 60, fontWeight: 'bold' }}>D</Text></View>
           <View ><Text style={{ color: '#0F9D58', fontSize: 60, fontWeight: 'bold' }}>o</Text></View>
