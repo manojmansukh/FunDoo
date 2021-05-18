@@ -7275,6 +7275,16 @@ react-native-enhanced-popup-menu@^0.6.1:
   dependencies:
     prop-types "^15.6.0"
 
+react-native-facebook-login-page@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/react-native-facebook-login-page/-/react-native-facebook-login-page-1.0.5.tgz#e548451d5a8b883ae63b72779e47a003b2c683cd"
+  integrity sha512-iLIv/fDNVEJSQX0lCiEz8Yx8Ll2c0UiFgbo34NttKBS+b/0QZLRZFLCqv/UgzDM/TlWksYvVDL9X3mk3y2Ybsg==
+
+react-native-fast-image@^8.3.0:
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-fast-image/-/react-native-fast-image-8.3.0.tgz#5821fac5e8759b3a87628600522eb72c579b0b9f"
+  integrity sha512-b0uhUEXKuIWY1WFai30i4LR99kF8OKoOjl6Yqcnc/bydkuE1r7oj0eUNifa7jwD4Pdpeff+uGMrEz27UMap0yQ==
+
 react-native-fbsdk@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/react-native-fbsdk/-/react-native-fbsdk-1.1.2.tgz#4264903add869d05b84ef55ade9ff720c2957781"
@@ -7422,6 +7432,11 @@ react-native-ratings@^6.3.0:
   dependencies:
     lodash "^4.17.4"
     prop-types "^15.5.10"
+
+react-native-raw-bottom-sheet@^2.0.6:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-raw-bottom-sheet/-/react-native-raw-bottom-sheet-2.2.0.tgz#d11dabb86aadb014273767ef7b554924b13633c5"
+  integrity sha512-qL4JKIqvbcVxbkKzeh51hjV7suoJN3ouxzvLmOg0FBUV1yiJAfEbacjQdtRCI6+OU5pyGFBIifLsTXcFDwHggg==
 
 react-native-reanimated@^1.4.0:
   version "1.4.0"
