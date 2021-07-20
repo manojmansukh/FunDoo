@@ -25,7 +25,7 @@
     "react": "^16.12.0",
     "react-color": "^2.17.3",
     "react-dom": "^16.12.0",
-    "react-native": "0.61.5",
+    "react-native": "0.62.3",
     "react-native-color-palette": "^2.2.0",
     "react-native-contacts": "^5.0.7",
     "react-native-datepicker": "^1.7.2",
